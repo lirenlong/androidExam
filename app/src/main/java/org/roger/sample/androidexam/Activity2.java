@@ -1,5 +1,6 @@
 package org.roger.sample.androidexam;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,11 +8,15 @@ import android.view.MenuItem;
 
 
 public class Activity2 extends ActionBarActivity {
+    private Fragment2 frg2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity2);
+
+        frg2 = Fragment2.newInstance();
+        getSupportFragmentManager().beginTransaction().replace(R.id.kengwei,frg2).commit();
     }
 
 
@@ -35,5 +40,8 @@ public class Activity2 extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void doIt() {
+        frg2.obtainData();
     }
 }
