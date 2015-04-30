@@ -1,7 +1,7 @@
 package org.roger.sample.androidexam;
 
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 
 public class Activity1 extends ActionBarActivity {
@@ -17,12 +19,20 @@ public class Activity1 extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //init fresco
+        Fresco.initialize(this);
+
         setContentView(R.layout.activity_activity1);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+        SimpleDraweeView draweeView = (SimpleDraweeView) findViewById(R.id.my_image_view);
+        Uri uri = Uri.parse("http://bcs.91rb.com/rbpiczy/Wallpaper/2011/4/1/367a6378e4d64586aace7a0da8f22309-3.jpg");
+        draweeView.setImageURI(uri);
     }
 
 
