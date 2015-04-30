@@ -5,17 +5,10 @@
 
     <fragment
         android:id="@+id/fragment1"
-        android:name="org.roger.sample.androidexam.Fragment1"
+        android:name="org.roger.sample.androidexam.Exam2.Fragment1"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"/>
-
-    <!--<fragment-->
-        <!--android:id="@+id/fragment2"-->
-        <!--android:name="org.roger.sample.androidexam.Fragment2"-->
-        <!--android:layout_width="0dip"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="1"/>-->
 
     <LinearLayout
         android:id="@+id/kengwei"

@@ -1,4 +1,4 @@
-package org.roger.sample.androidexam;
+package org.roger.sample.androidexam.Exam2;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.devspark.progressfragment.ProgressFragment;
+
+import org.roger.sample.androidexam.R;
 
 public class Fragment2 extends ProgressFragment {
     private View mContentView;
@@ -33,7 +35,7 @@ public class Fragment2 extends ProgressFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mContentView = inflater.inflate(R.layout.progress_content, null);
+        mContentView = inflater.inflate(R.layout.e2_progress_content, null);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -55,7 +57,7 @@ public class Fragment2 extends ProgressFragment {
 
 //    @Override
 //    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.menu_activity1, menu);
+//        inflater.inflate(R.menu.e2_menu_activity2, menu);
 //    }
 //
 //    @Override

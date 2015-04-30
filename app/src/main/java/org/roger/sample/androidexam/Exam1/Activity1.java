@@ -1,4 +1,4 @@
-package org.roger.sample.androidexam;
+package org.roger.sample.androidexam.Exam1;
 
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import org.roger.sample.androidexam.R;
+
 
 public class Activity1 extends ActionBarActivity {
 
@@ -23,7 +25,7 @@ public class Activity1 extends ActionBarActivity {
         //init fresco
         Fresco.initialize(this);
 
-        setContentView(R.layout.activity_activity1);
+        setContentView(R.layout.e1_activity_activity1);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
@@ -39,7 +41,7 @@ public class Activity1 extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_activity1, menu);
+        getMenuInflater().inflate(R.menu.e1_menu_activity1, menu);
         return true;
     }
 
@@ -69,7 +71,7 @@ public class Activity1 extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_activity1, container, false);
+            View rootView = inflater.inflate(R.layout.e1_fragment_activity1, container, false);
             return rootView;
         }
     }
