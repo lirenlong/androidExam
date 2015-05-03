@@ -24,4 +24,5 @@ small | 426dp x 320dp
 
 ##系统匹配顺序##
 
-优先匹配xlarge,large,normal,small,如果宽高都不小于这四个qualifiers,那么命中,否则去swXXXdp中去寻找适配。
+* 3.2(api=13)之前不支持特殊宽度/高度限定符，因此只匹配xlarge,large,normal,small
+* 3.2之后，优先匹配swXXXdp,wXXXdp,shXXXdp,hXXXdp,然后匹配四个默认限定符
