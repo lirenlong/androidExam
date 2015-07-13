@@ -17,13 +17,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+
     compile 'com.android.support:appcompat-v7:22.0.0'
 
     compile 'com.facebook.fresco:fresco:0.4.0'
 
     compile 'com.github.johnkil.android-progressfragment:progressfragment:1.4.+'
+
+    testCompile files('libs/junit-4.12.jar')
 }

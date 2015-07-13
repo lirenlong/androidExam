@@ -11,5 +11,7 @@
     <string name="title_activity_activity3">Activity3</string>
     <string name="title_activity_sound">SoundActivity</string>
     <string name="title_activity_display">DisplayActivity</string>
+    <string name="title_activity_interface">InterfaceActivity</string>
+    <string name="title_activity_adapter_learn">AdapterLearnActivity</string>
 
 </resources>
