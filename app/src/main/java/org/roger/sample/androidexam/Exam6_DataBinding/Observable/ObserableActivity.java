@@ -2,7 +2,6 @@ package org.roger.sample.androidexam.Exam6_DataBinding.Observable;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableArrayMap;
-import android.databinding.ObservableMap;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import org.roger.sample.androidexam.R;
-import org.roger.sample.androidexam.databinding.ActivityObservableBinding;
+import org.roger.sample.androidexam.databinding.E6ActivityObservableBinding;
 
 public class ObserableActivity extends ActionBarActivity {
 
@@ -21,7 +20,7 @@ public class ObserableActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityObservableBinding oab = DataBindingUtil.setContentView(this, R.layout.activity_observable);
+        E6ActivityObservableBinding oab = DataBindingUtil.setContentView(this, R.layout.e6_activity_observable);
         ou = new ObservableUser();
         oab.setObservableUser(ou);
 
