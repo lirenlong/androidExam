@@ -1,33 +1,28 @@
 package org.roger.sample.androidexam.Exam6_DataBinding;
 
 import android.app.Activity;
-import android.databinding.DataBindingUtil;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import org.roger.sample.androidexam.Exam6_DataBinding.Observable.ObserableActivity;
+import org.roger.sample.androidexam.Exam6_DataBinding.basic.DataBindingActivity;
 import org.roger.sample.androidexam.R;
-import org.roger.sample.androidexam.databinding.E6ActivityDataBindingMainBinding;
 
-public class DataBindingActivity extends Activity {
-
-    ObservableUser user = new ObservableUser();
+public class DBInterfaceActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        E6ActivityDataBindingMainBinding db = DataBindingUtil.setContentView(this, R.layout.e6_activity_data_binding_main);
-//        User user = new User("roger","lee");
-        user.setLastName("lee");
-        user.setFirstName("roger");
-        db.setUser(user);
+        setContentView(R.layout.e6_activity_dbinterface);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_data_binding_main, menu);
+        getMenuInflater().inflate(R.menu.menu_dbinterface, menu);
         return true;
     }
 
@@ -46,8 +41,16 @@ public class DataBindingActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onBtnClick1(View view) {
-        user.setFirstName("big");
-        user.setLastName("girl");
+    public void onBtnClick(View view) {
+        Intent i = new Intent();
+        switch (view.getId()) {
+            case R.id.btnBasic:
+                i.setClass(this, DataBindingActivity.class);
+                break;
+            case R.id.btnObservable:
+                i.setClass(this, ObserableActivity.class);
+                break;
+        }
+        startActivity(i);
     }
 }

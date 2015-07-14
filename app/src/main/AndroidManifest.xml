@@ -46,10 +46,17 @@
             android:name=".Exam5_Adapter.AdapterLearnActivity"
             android:label="@string/title_activity_adapter_learn" >
         </activity>
-        
         <activity
-            android:name=".Exam6_DataBinding.DataBindingActivity"
-            android:label="DataBindingActivity">
+            android:name=".Exam6_DataBinding.basic.DataBindingActivity"
+            android:label="DataBindingActivity" >
+        </activity>
+        <activity
+            android:name=".Exam6_DataBinding.DBInterfaceActivity"
+            android:label="@string/title_activity_dbinterface" >
+        </activity>
+        <activity
+            android:name=".Exam6_DataBinding.Observable.ObserableActivity"
+            android:label="@string/title_activity_obserable" >
         </activity>
     </application>
 

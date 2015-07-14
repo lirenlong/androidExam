@@ -14,5 +14,9 @@
     <string name="title_activity_interface">InterfaceActivity</string>
     <string name="title_activity_adapter_learn">AdapterLearnActivity</string>
     <string name="title_activity_data_binding_main">DataBindingMainActivity</string>
+    <string name="title_activity_dbinterface">DataBinding Sample</string>
+    <string name="title_activity_obserable">ObservableActivity</string>
 
+
+    <string name="nameFormatWithAge">Full Name is %1$s:%2$s, at grade %3$d.</string>
 </resources>

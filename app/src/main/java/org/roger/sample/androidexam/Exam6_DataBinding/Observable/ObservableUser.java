@@ -1,4 +1,4 @@
-package org.roger.sample.androidexam.Exam6_DataBinding;
+package org.roger.sample.androidexam.Exam6_DataBinding.Observable;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
