@@ -58,6 +58,10 @@
             android:name=".Exam6_DataBinding.Observable.ObserableActivity"
             android:label="@string/title_activity_obserable" >
         </activity>
+        <activity
+            android:name=".Exam6_DataBinding.viewwithID.ViewWithIDActivity"
+            android:label="@string/title_activity_view_with_id" >
+        </activity>
     </application>
 
 </manifest>

@@ -32,6 +32,14 @@
                 android:layout_height="wrap_content"
                 android:onClick="onBtnClick"
                 android:text="Observable" />
+
+            <Button
+                android:id="@+id/btnViewWithID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="@string/title_activity_view_with_id" />
+
         </LinearLayout>
     </ScrollView>
 

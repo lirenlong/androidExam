@@ -9,6 +9,7 @@ import android.view.View;
 
 import org.roger.sample.androidexam.Exam6_DataBinding.Observable.ObserableActivity;
 import org.roger.sample.androidexam.Exam6_DataBinding.basic.DataBindingActivity;
+import org.roger.sample.androidexam.Exam6_DataBinding.viewwithID.ViewWithIDActivity;
 import org.roger.sample.androidexam.R;
 
 public class DBInterfaceActivity extends Activity {
@@ -49,6 +50,9 @@ public class DBInterfaceActivity extends Activity {
                 break;
             case R.id.btnObservable:
                 i.setClass(this, ObserableActivity.class);
+                break;
+            case R.id.btnViewWithID:
+                i.setClass(this, ViewWithIDActivity.class);
                 break;
         }
         startActivity(i);
