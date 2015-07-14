@@ -55,6 +55,13 @@
                 android:layout_height="wrap_content"
                 android:onClick="onBtnClick"
                 android:text="exam5" />
+
+            <Button
+                android:id="@+id/exam6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="exam6" />
         </LinearLayout>
     </ScrollView>
 

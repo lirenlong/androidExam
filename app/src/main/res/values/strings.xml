@@ -13,5 +13,6 @@
     <string name="title_activity_display">DisplayActivity</string>
     <string name="title_activity_interface">InterfaceActivity</string>
     <string name="title_activity_adapter_learn">AdapterLearnActivity</string>
+    <string name="title_activity_data_binding_main">DataBindingMainActivity</string>
 
 </resources>

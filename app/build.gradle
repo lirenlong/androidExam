@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.android.databinding'
 
 android {
     compileSdkVersion 21
@@ -6,11 +7,12 @@ android {
 
     defaultConfig {
         applicationId "org.roger.sample.androidexam"
-        minSdkVersion 14
-        targetSdkVersion 21
+        minSdkVersion 16
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -30,4 +32,6 @@ dependencies {
     compile 'com.github.johnkil.android-progressfragment:progressfragment:1.4.+'
 
     testCompile files('libs/junit-4.12.jar')
+
+
 }

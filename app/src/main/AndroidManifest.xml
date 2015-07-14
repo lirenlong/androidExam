@@ -46,6 +46,11 @@
             android:name=".Exam5_Adapter.AdapterLearnActivity"
             android:label="@string/title_activity_adapter_learn" >
         </activity>
+        
+        <activity
+            android:name=".Exam6_DataBinding.DataBindingActivity"
+            android:label="DataBindingActivity">
+        </activity>
     </application>
 
 </manifest>

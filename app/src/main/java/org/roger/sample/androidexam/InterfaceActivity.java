@@ -10,6 +10,7 @@ import org.roger.sample.androidexam.Exam2.Activity2;
 import org.roger.sample.androidexam.Exam3.Activity3;
 import org.roger.sample.androidexam.Exam4_surfaceview.ViewTest;
 import org.roger.sample.androidexam.Exam5_Adapter.AdapterLearnActivity;
+import org.roger.sample.androidexam.Exam6_DataBinding.DataBindingActivity;
 
 
 public class InterfaceActivity extends Activity {
@@ -37,6 +38,9 @@ public class InterfaceActivity extends Activity {
                 break;
             case R.id.exam5:
                 i.setClass(this, AdapterLearnActivity.class);
+                break;
+            case R.id.exam6:
+                i.setClass(this, DataBindingActivity.class);
                 break;
         }
         startActivity(i);
