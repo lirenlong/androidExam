@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import org.roger.sample.androidexam.Exam0_wasteland.goToGetIt;
 import org.roger.sample.androidexam.Exam1.Activity1;
 import org.roger.sample.androidexam.Exam2.Activity2;
 import org.roger.sample.androidexam.Exam3.Activity3;
@@ -25,6 +26,9 @@ public class InterfaceActivity extends Activity {
     public void onBtnClick(View view) {
         Intent i = new Intent();
         switch (view.getId()) {
+            case R.id.exam0:
+                i.setClass(this, goToGetIt.class);
+                break;
             case R.id.exam1:
                 i.setClass(this, Activity1.class);
                 break;
@@ -43,6 +47,7 @@ public class InterfaceActivity extends Activity {
             case R.id.exam6:
                 i.setClass(this, DBInterfaceActivity.class);
                 break;
+
         }
         startActivity(i);
     }
