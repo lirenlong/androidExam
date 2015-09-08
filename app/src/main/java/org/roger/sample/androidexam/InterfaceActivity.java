@@ -13,6 +13,7 @@ import org.roger.sample.androidexam.Exam4_surfaceview.ViewTest;
 import org.roger.sample.androidexam.Exam5_Adapter.AdapterLearnActivity;
 import org.roger.sample.androidexam.Exam6_DataBinding.DBInterfaceActivity;
 import org.roger.sample.androidexam.Exam6_DataBinding.basic.DataBindingActivity;
+import org.roger.sample.androidexam.Exam7_Service.LocalActivity;
 
 
 public class InterfaceActivity extends Activity {
@@ -47,7 +48,9 @@ public class InterfaceActivity extends Activity {
             case R.id.exam6:
                 i.setClass(this, DBInterfaceActivity.class);
                 break;
-
+            case R.id.exam7:
+                i.setClass(this, LocalActivity.class);
+                break;
         }
         startActivity(i);
     }
