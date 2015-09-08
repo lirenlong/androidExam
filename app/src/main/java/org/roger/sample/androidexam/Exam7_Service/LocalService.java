@@ -26,7 +26,7 @@ public class LocalService extends Service {
 
     @Override
     public void onCreate() {
-        Log.i(TAG, TAG + "onCreate");
+        Log.i(TAG, TAG + "--onCreate");
         super.onCreate();
 
         simpleBinder = new SimpleBinder();
@@ -34,7 +34,7 @@ public class LocalService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.i(TAG, TAG + "onDestroy");
+        Log.i(TAG, TAG + "--onDestroy");
         super.onDestroy();
     }
 
@@ -45,13 +45,13 @@ public class LocalService extends Service {
 //        return null;
 //    }
     public IBinder onBind(Intent intent) {
-        Log.i(TAG, TAG + "onBind");
+        Log.i(TAG, TAG + "--onBind");
         return simpleBinder;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i(TAG, TAG + "onStartCommand");
+        Log.i(TAG, TAG + "--onStartCommand");
         return super.onStartCommand(intent, flags, startId);
     }
 }

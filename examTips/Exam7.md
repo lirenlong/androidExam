@@ -1,6 +1,6 @@
 例子参考[here](http://www.cnblogs.com/newcj/archive/2011/05/30/2061370.html)
 
-## start方式的servcie
+## start方式的service
 
 * 无论start多少次service，都只会执行一次onCreate，多次onStartCommand
 * 注意stop它，多次start调用，只需一次stop
@@ -8,7 +8,10 @@
 
 
 
+## bind方式的service
+bindService需要一个ServiceConnection。通过bind，可以将activity绑定到service上；通过ServiceConnection可以获取IBinder，进而对service操作。
 
+* 注意若只有一个activity绑定到service上，则activity销毁，则service销毁，无论service是否执行完。这其中包括，横竖屏切换的情况：切一下，servcie就停止了。
 
 # 关于transactionTooLargeException问题
 
