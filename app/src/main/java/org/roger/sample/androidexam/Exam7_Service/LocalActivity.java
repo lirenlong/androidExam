@@ -3,6 +3,7 @@ package org.roger.sample.androidexam.Exam7_Service;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,6 +13,7 @@ public class LocalActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i("LocalActivity","LocalActivity onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local);
 
