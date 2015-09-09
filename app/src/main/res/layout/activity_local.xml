@@ -10,6 +10,13 @@
         android:text="@string/hello_world" />
 
     <Button
+        android:id="@+id/startService"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="startService" />
+
+    <Button
         android:id="@+id/bind"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -43,5 +50,10 @@
         android:layout_height="wrap_content"
         android:onClick="onBtnClick"
         android:text="IntentBigData" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageview"/>
 
 </LinearLayout>

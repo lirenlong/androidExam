@@ -2,7 +2,9 @@ package org.roger.sample.androidexam.Exam7_Service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Binder;
+import android.os.Environment;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -22,6 +24,11 @@ public class LocalService extends Service {
         public int add(int a, int b) {
             return (a + b);
         }
+    }
+
+    public Bitmap getDefaultBitmap() {
+        String path = Environment.getExternalStorageDirectory() + "/test_big.jpg";
+        return LocalActivity.getLocalBitmap(path);
     }
 
     @Override

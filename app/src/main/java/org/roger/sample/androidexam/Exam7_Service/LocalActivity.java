@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import org.roger.sample.androidexam.InterfaceActivity;
 import org.roger.sample.androidexam.R;
@@ -35,9 +36,10 @@ public class LocalActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local);
 
-        // start a local service
-//        startService(new Intent(this, LocalService.class));
+        initialServiceConnection();
+    }
 
+    private void initialServiceConnection() {
         // bind a local service
         sc = new ServiceConnection() {
             @Override
@@ -45,6 +47,12 @@ public class LocalActivity extends ActionBarActivity {
                 LocalService.SimpleBinder sBinder = ((LocalService.SimpleBinder) service);
                 Log.i(TAG, "3 + 2 = " + sBinder.add(3, 2));
                 Log.i(TAG, sBinder.getService().toString());
+
+                // 测试通过service获取，service上的bitmap。
+                Bitmap bm = sBinder.getService().getDefaultBitmap();
+                if (bm != null) {
+                    ((ImageView) findViewById(R.id.imageview)).setImageBitmap(bm);
+                }
             }
 
             @Override
@@ -52,8 +60,6 @@ public class LocalActivity extends ActionBarActivity {
 
             }
         };
-
-
     }
 
     @Override
@@ -109,6 +115,10 @@ public class LocalActivity extends ActionBarActivity {
             case R.id.IntentBigData:
                 doIntentBig(i);
                 break;
+            case R.id.startService:
+                i.setClass(this, LocalService.class);
+                startService(i);
+                break;
         }
     }
 
@@ -153,7 +163,9 @@ public class LocalActivity extends ActionBarActivity {
     }
 
 
-    // inner static Person(若是inner class，必须是static)
+    /*
+     * INNER static Person(若是inner class，必须是static)
+     */
     public static class Person implements Serializable {
         private static final long serialVersionUID = -7060210544600464481L;
         public String name;

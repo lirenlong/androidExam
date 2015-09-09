@@ -86,7 +86,7 @@ intent不建议传递serializal和parcelable，因为积累多了，就可能tra
 	
 有的时候crash，可能是因为我在主线程做decode。
 
-所以：一个是tmintent,一个是taobaointentservice中的notifcation
+所以：一个是tmintent,一个是taobaointentservice中的notifcation,一个是service之间的broadcast
 
 ## 遗留的疑问
 
