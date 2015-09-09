@@ -12,6 +12,8 @@
 bindService需要一个ServiceConnection。通过bind，可以将activity绑定到service上；通过ServiceConnection可以获取IBinder，进而对service操作。
 
 * 注意若只有一个activity绑定到service上，则activity销毁，则service销毁，无论service是否执行完。这其中包括，横竖屏切换的情况：切一下，servcie就停止了。
+* 多次unbindService会抛出异常
+* 记得重载Service.onBind并且不要返回null（否则运行了Service但是没有绑定）
 
 # 关于transactionTooLargeException问题
 
@@ -34,3 +36,12 @@ notification也是基于IBinder做的。从`ServiceManager`获取IBinder，在�
 
 
 ## 自定义的service注意
+* 及时释放
+* 不传大数据
+
+
+## 遗留的疑问
+
+### startActivity是否可能触发这个异常
+
+### ipc中的ibinder会触发这个问题，那么lpc和rpc都会出现这个问题么？

@@ -23,4 +23,25 @@
         android:onClick="onBtnClick"
         android:text="unbind" />
 
+    <Button
+        android:id="@+id/IntentSerializal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="IntentSerializal" />
+
+    <Button
+        android:id="@+id/IntentParcelable"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="IntentParcelable" />
+
+    <Button
+        android:id="@+id/IntentBigData"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="IntentBigData" />
+
 </LinearLayout>
