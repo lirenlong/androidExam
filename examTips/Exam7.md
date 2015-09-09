@@ -39,7 +39,7 @@ notification也是基于IBinder做的。从`ServiceManager`获取IBinder，在�
 * 及时释放
 * 不传大数据
 
-## 关于intent
+## 关于界面间intent
 intent不建议传递serializal和parcelable，因为积累多了，就可能transactionTooLarge.
 
 写了一个在intent放入大数据的例子：
@@ -87,6 +87,12 @@ intent不建议传递serializal和parcelable，因为积累多了，就可能tra
 有的时候crash，可能是因为我在主线程做decode。
 
 所以：一个是tmintent,一个是taobaointentservice中的notifcation,一个是service之间的broadcast
+
+## 关于notification之间的intent
+大数据时，通知点击没有效果。但是没有`FAILED BINDER TRANSACTION !!!`这样的log。
+
+## 关于broadcastReceiver的intent
+大数据时，send后，onReceive不响应。有`FAILED BINDER TRANSACTION !!!`
 
 ## 遗留的疑问
 
