@@ -43,6 +43,7 @@ public class LocalService extends Service {
     public void onDestroy() {
         Log.i(TAG, TAG + "--onDestroy");
         super.onDestroy();
+        unregisterReceiver(rhelper);
     }
 
     @Nullable
@@ -59,6 +60,10 @@ public class LocalService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i(TAG, TAG + "--onStartCommand");
+        rhelper= new BroadcastReceiverHelper(this);
+        rhelper.registerAction("com.roger.broadcastreceiver");
         return super.onStartCommand(intent, flags, startId);
     }
+
+    private BroadcastReceiverHelper rhelper;
 }

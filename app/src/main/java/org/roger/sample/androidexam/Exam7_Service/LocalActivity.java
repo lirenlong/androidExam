@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import org.apache.http.ReasonPhraseCatalog;
 import org.roger.sample.androidexam.InterfaceActivity;
 import org.roger.sample.androidexam.R;
 
@@ -130,7 +131,22 @@ public class LocalActivity extends ActionBarActivity {
             case R.id.startService:
                 doStartService(i);
                 break;
+            case R.id.SendBroadCast:
+                doSendBroadcast(i);
+                break;
         }
+    }
+
+    private void doSendBroadcast(Intent i) {
+        String path = Environment.getExternalStorageDirectory() + "/kgr.jpg";
+
+        Bitmap bitmap = getLocalBitmap(path);
+        i.putExtra("bitmap", bitmap);
+        i.putExtra("who",1);
+        i.putExtra("msg","hello LocalService from LocalAcitivty via notifaction.");
+
+        i.setAction("com.roger.broadcastreceiver");
+        sendBroadcast(i);
     }
 
     private void doStartService(Intent i) {

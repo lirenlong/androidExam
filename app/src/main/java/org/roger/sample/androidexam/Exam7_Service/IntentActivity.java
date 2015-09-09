@@ -1,11 +1,13 @@
 package org.roger.sample.androidexam.Exam7_Service;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.imagepipeline.cache.BufferedDiskCache;
@@ -29,12 +31,19 @@ public class IntentActivity extends ActionBarActivity {
         }
 
         Bundle bundle = i.getExtras();
-        Book book = (Book) bundle.getParcelable("parcelable");
-        if (book != null) {
-            Log.i("IntentActivity", "Author : " + book.getAuthor() + "\nBookName : " + book.getBookName() + "\nPublishTime : " + book.getPublishTime());
-            tv.setText("Author : " + book.getAuthor() + "\nBookName : " + book.getBookName() + "\nPublishTime : " + book.getPublishTime());
+        if (bundle != null) {
+            Book book = (Book) bundle.getParcelable("parcelable");
+            if(book != null ) {
+                Log.i("IntentActivity", "Author : " + book.getAuthor() + "\nBookName : " + book.getBookName() + "\nPublishTime : " + book.getPublishTime());
+                tv.setText("Author : " + book.getAuthor() + "\nBookName : " + book.getBookName() + "\nPublishTime : " + book.getPublishTime());
+            }
         }
 
+
+        Bitmap bm = i.getParcelableExtra("bitmap");
+        if(bm != null) {
+            ((ImageView) findViewById(R.id.imageview)).setImageBitmap(bm);
+        }
     }
 
     @Override
