@@ -86,13 +86,31 @@ intent不建议传递serializal和parcelable，因为积累多了，就可能tra
 	
 有的时候crash，可能是因为我在主线程做decode。
 
-所以：一个是tmintent,一个是taobaointentservice中的notifcation,一个是service之间的broadcast
-
 ## 关于notification之间的intent
 大数据时，通知点击没有效果。但是没有`FAILED BINDER TRANSACTION !!!`这样的log。
 
 ## 关于broadcastReceiver的intent
 大数据时，send后，onReceive不响应。有`FAILED BINDER TRANSACTION !!!`
+
+## 总结
+走查代码中，关于：
+
+* tmintent（这里使用了一些parcelable）
+* notifcation（主要在taobaointentservice）
+* service的数据传递（可能是broadcast，也可能是Bind方式的service，通过IBinder返回）
+
+## 经验
+* 不在intent中放大数据（包括界面间，broadcast，notification）
+* 尽量少的在intent中使用serializable和parcelable
+* 不在service和application间，一次性传大数据
+
+尽量使用读i/o的方式，虽然较慢，但是不crash。
+
+## 思考
+
+是否可以把大数据放到c层，常驻呢？如果可以，即解决i/o慢的问题，又解决了稳定性的问题。
+
+
 
 ## 遗留的疑问
 
