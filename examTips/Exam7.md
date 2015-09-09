@@ -39,6 +39,54 @@ notification也是基于IBinder做的。从`ServiceManager`获取IBinder，在�
 * 及时释放
 * 不传大数据
 
+## 关于intent
+intent不建议传递serializal和parcelable，因为积累多了，就可能transactionTooLarge.
+
+写了一个在intent放入大数据的例子：
+
+* 写了一个传递1.2M图片的例子
+有时不crash：
+	09-09 15:26:42.992 E/JavaBinder(29246): !!! FAILED BINDER TRANSACTION !!!
+图片太大，binder失败。
+	
+有时crash：
+
+	09-09 11:38:38.772 E/AndroidRuntime(25018): FATAL EXCEPTION: main
+	09-09 11:38:38.772 E/AndroidRuntime(25018): Process: org.roger.sample.androidexam, PID: 25018
+	09-09 11:38:38.772 E/AndroidRuntime(25018): java.lang.IllegalStateException: Could not execute method of the activity
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at android.view.View$1.onClick(View.java:3829)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at android.view.View.performClick(View.java:4444)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at android.view.View$PerformClick.run(View.java:18457)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at android.os.Handler.handleCallback(Handler.java:733)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at android.os.Handler.dispatchMessage(Handler.java:95)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at android.os.Looper.loop(Looper.java:136)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at android.app.ActivityThread.main(ActivityThread.java:5049)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at java.lang.reflect.Method.invokeNative(Native Method)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at java.lang.reflect.Method.invoke(Method.java:515)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:793)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:609)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at dalvik.system.NativeStart.main(Native Method)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): Caused by: java.lang.reflect.InvocationTargetException
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at java.lang.reflect.Method.invokeNative(Native Method)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at java.lang.reflect.Method.invoke(Method.java:515)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at android.view.View$1.onClick(View.java:3824)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	... 11 more
+	09-09 11:38:38.772 E/AndroidRuntime(25018): Caused by: java.lang.OutOfMemoryError
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at android.graphics.BitmapFactory.nativeDecodeStream(Native Method)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at android.graphics.BitmapFactory.decodeStreamInternal(BitmapFactory.java:627)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at android.graphics.BitmapFactory.decodeStream(BitmapFactory.java:603)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at android.graphics.BitmapFactory.decodeStream(BitmapFactory.java:641)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at org.roger.sample.androidexam.Exam7_Service.LocalActivity.getLocalBitmap(LocalActivity.java:181)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at org.roger.sample.androidexam.Exam7_Service.LocalActivity.doIntentBig(LocalActivity.java:133)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	at org.roger.sample.androidexam.Exam7_Service.LocalActivity.onBtnClick(LocalActivity.java:110)
+	09-09 11:38:38.772 E/AndroidRuntime(25018): 	... 14 more
+	09-09 11:38:38.782 W/ActivityManager( 1211):   Force finishing activity org.roger.sample.androidexam/.Exam7_Service.LocalActivity
+	09-09 11:38:39.292 W/ActivityManager( 1211): Activity pause timeout for ActivityRecord{42d554e0 u0 org.roger.sample.androidexam/.Exam7_Service.LocalActivity t28 f}
+	09-09 11:38:40.212 I/ActivityManager( 1211): Process org.roger.sample.androidexam (pid 25018) has died.
+	
+有的时候crash，可能是因为我在主线程做decode。
+
+所以：一个是tmintent,一个是taobaointentservice中的notifcation
 
 ## 遗留的疑问
 

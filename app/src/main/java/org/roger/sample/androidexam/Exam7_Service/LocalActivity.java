@@ -133,6 +133,7 @@ public class LocalActivity extends ActionBarActivity {
         Bitmap bitmap = getLocalBitmap(path);
         i.putExtra("bitmap", bitmap);
         try {
+            i.setClass(this, IntentActivity.class);
             startActivity(i);
         } catch (Exception e) {
             Log.i(TAG, "exception is : " + e);
