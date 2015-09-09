@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.os.Environment;
 
 import org.roger.sample.androidexam.R;
 
@@ -45,6 +46,12 @@ public class BroadcastReceiverHelper extends BroadcastReceiver {
             mn = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             notification = new Notification(R.drawable.ic_launcher, id + "发送广播", System.currentTimeMillis());
             intent.setClass(context, IntentActivity.class);
+
+            //for big test
+            String path = Environment.getExternalStorageDirectory() + "/test_medium.jpg";
+            Bitmap bigBM = LocalActivity.getLocalBitmap(path);
+            intent.putExtra("bitmap",bigBM);
+
             PendingIntent contentIntent = PendingIntent.getActivity(context,
                     0, intent, 0);
             notification.setLatestEventInfo(context,

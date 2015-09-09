@@ -138,7 +138,10 @@ public class LocalActivity extends ActionBarActivity {
     }
 
     private void doSendBroadcast(Intent i) {
-        String path = Environment.getExternalStorageDirectory() + "/kgr.jpg";
+        String path = Environment.getExternalStorageDirectory() + "/test_small.jpg";
+        //test_big.jpg 1.2M
+        //test_medium.jpg 640k
+        //test_small.jpg 11k
 
         Bitmap bitmap = getLocalBitmap(path);
         i.putExtra("bitmap", bitmap);

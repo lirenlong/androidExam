@@ -56,7 +56,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="onBtnClick"
-        android:text="SendBroadCast" />
+        android:text="Send BroadCast to service then notifcation to intentActivity" />
 
     <ImageView
         android:layout_width="wrap_content"
