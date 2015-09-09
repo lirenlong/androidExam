@@ -92,6 +92,18 @@ public class LocalActivity extends ActionBarActivity {
 //        stopService(new Intent(this, LocalService.class));
     }
 
+    /*
+  * ServiceRecord{43728060 u0 org.roger.sample.androidexam/.Exam7_Service.LocalService}
+    intent={cmp=org.roger.sample.androidexam/.Exam7_Service.LocalService}
+    packageName=org.roger.sample.androidexam
+    processName=org.roger.sample.androidexam
+    baseDir=/data/app/org.roger.sample.androidexam-2.apk
+    dataDir=/data/data/org.roger.sample.androidexam
+    app=ProcessRecord{436fb4f0 1235:org.roger.sample.androidexam/u0a213}
+    createTime=-13s714ms startingBgTimeout=--
+    lastActivity=-13s713ms restartTime=-13s713ms createdFromFg=true
+    startRequested=true delayedStop=false stopIfKilled=false callStart=true lastStartId=1
+    */
     public void onBtnClick(View obj) {
         Intent i = new Intent();
 
@@ -116,10 +128,27 @@ public class LocalActivity extends ActionBarActivity {
                 doIntentBig(i);
                 break;
             case R.id.startService:
-                i.setClass(this, LocalService.class);
-                startService(i);
+                doStartService(i);
                 break;
         }
+    }
+
+    private void doStartService(Intent i) {
+        i.setClass(this, LocalService.class);
+        Book mBook = new Book();
+        mBook.setBookName("Android Tutor");
+        mBook.setAuthor("Frankie");
+        mBook.setPublishTime(2010);
+
+        Bundle mBundle = new Bundle();
+        mBundle.putParcelable("1", mBook);
+        mBundle.putParcelable("2", mBook);
+        mBundle.putParcelable("3", mBook);
+        mBundle.putParcelable("4", mBook);
+        mBundle.putParcelable("5", mBook);
+        i.putExtras(mBundle);
+
+        startService(i);
     }
 
     private void doIntentParcelable(Intent i) {
