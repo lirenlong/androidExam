@@ -131,3 +131,5 @@ intent不建议传递serializal和parcelable，因为积累多了，就可能tra
 **注意：LocalBroadcastReceiver的register没有提供handler的方式，所以通过该管理器注册的所有接收者，都将被主线程调用**
 
 另外：貌似调用sendBroadcastSync，会阻塞在所有Intent的接受者执行完毕，所以用这个api，应该会导致，都是在主线程执行。
+
+**注意：一定要注意注册广播的位置，比如不小心写在了onStartCommand中，一旦这个service被start了多次，那么就会注册多次，那么当send的时候，就会执行多次，那么onReceive中的内容就惨了。所以要注意注册位置，send的位置，还要注意onReceive会不会有多次执行的bug**
