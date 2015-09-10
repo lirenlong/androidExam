@@ -59,7 +59,7 @@ public class LocalService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i(TAG, TAG + "--onStartCommand");
+        Log.i(TAG, TAG + "--onStartCommand. Thread name : " + Thread.currentThread().getName());//main
         rhelper= new BroadcastReceiverHelper(this);
         rhelper.registerAction("com.roger.broadcastreceiver");
         return super.onStartCommand(intent, flags, startId);

@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Environment;
+import android.util.Log;
 
 import org.roger.sample.androidexam.R;
 
@@ -37,6 +38,7 @@ public class BroadcastReceiverHelper extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        Log.i("BroadcastReceiverHelper", "BroadcastReceiverHelper's thread name : " + Thread.currentThread().getName());//
 
         String msg = intent.getStringExtra("msg");
         int id = intent.getIntExtra("who", 0);

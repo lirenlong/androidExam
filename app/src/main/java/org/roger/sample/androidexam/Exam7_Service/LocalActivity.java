@@ -167,6 +167,7 @@ public class LocalActivity extends ActionBarActivity {
         mBundle.putParcelable("5", mBook);
         i.putExtras(mBundle);
 
+        Log.i(TAG, "LocalActivity's thread name : " + Thread.currentThread().getName());//main
         startService(i);
     }
 
