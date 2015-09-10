@@ -15,6 +15,7 @@ import android.util.Log;
 public class LocalService extends Service {
     public static final String TAG = "LocalService";
     public SimpleBinder simpleBinder = null;
+    public LocalService localService = null;
 
     public class SimpleBinder extends Binder {
         public LocalService getService() {
@@ -37,6 +38,7 @@ public class LocalService extends Service {
         super.onCreate();
 
         simpleBinder = new SimpleBinder();
+        localService = this;
     }
 
     @Override
@@ -59,9 +61,16 @@ public class LocalService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i(TAG, TAG + "--onStartCommand. Thread name : " + Thread.currentThread().getName());//main
-        rhelper= new BroadcastReceiverHelper(this);
-        rhelper.registerAction("com.roger.broadcastreceiver");
+        Log.i(TAG, TAG + "--onStartCommand. Thread name : " + Thread.currentThread().getId());//main
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.i(TAG, "NewThread" + "--runnable. Thread name : " + Thread.currentThread().getName() + ". Thread id : " + Thread.currentThread().getId());
+                rhelper= new BroadcastReceiverHelper(localService);
+                rhelper.registerAction("com.roger.broadcastreceiver");
+            }
+        }).start();
         return super.onStartCommand(intent, flags, startId);
     }
 

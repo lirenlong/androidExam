@@ -117,3 +117,17 @@ intent不建议传递serializal和parcelable，因为积累多了，就可能tra
 ### startActivity是否可能触发这个异常
 
 ### ipc中的ibinder会触发这个问题，那么lpc和rpc都会出现这个问题么？
+
+
+
+## 2015-09-10
+测试broadcastreceiver在使用时，执行的线程是什么：
+
+* 无论在什么线程里注册广播，onReceive执行的线程不收影响。关键因素在于调用注册方法的那个context，context一定是main thread。
+* 那么是不是说所有的onReceive都在main thread执行，不是的。见[stackoverflow](http://stackoverflow.com/questions/5674518/does-broadcastreceiver-onreceive-always-run-in-the-ui-thread). 有两个方式：
+  - 注册时指定了包含有非主线程looper的handler，那么就以这个looper所在线程去调用onReceive
+  - 在onReceive中调用goAsync，这样会在新的线程中执行。（其实onReceive也是在主线程中调用的）
+  
+**注意：LocalBroadcastReceiver的register没有提供handler的方式，所以通过该管理器注册的所有接收者，都将被主线程调用**
+
+另外：貌似调用sendBroadcastSync，会阻塞在所有Intent的接受者执行完毕，所以用这个api，应该会导致，都是在主线程执行。
