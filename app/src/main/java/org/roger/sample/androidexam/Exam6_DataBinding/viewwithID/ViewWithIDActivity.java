@@ -3,6 +3,7 @@ package org.roger.sample.androidexam.Exam6_DataBinding.viewwithID;
 import android.app.Activity;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 
 import org.roger.sample.androidexam.R;
@@ -10,6 +11,7 @@ import org.roger.sample.androidexam.databinding.E6ActivityViewWithIdBinding;
 
 
 public class ViewWithIDActivity extends Activity {
+    @Nullable
     E6ActivityViewWithIdBinding db = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

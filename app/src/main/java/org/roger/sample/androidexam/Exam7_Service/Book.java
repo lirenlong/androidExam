@@ -6,6 +6,7 @@ package org.roger.sample.androidexam.Exam7_Service;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 public class Book implements Parcelable {
     private String bookName;
@@ -37,7 +38,8 @@ public class Book implements Parcelable {
     }
 
     public static final Parcelable.Creator<Book> CREATOR = new Creator<Book>() {
-        public Book createFromParcel(Parcel source) {
+        @NonNull
+        public Book createFromParcel(@NonNull Parcel source) {
             Book mBook = new Book();
             mBook.bookName = source.readString();
             mBook.author = source.readString();
@@ -45,6 +47,7 @@ public class Book implements Parcelable {
             return mBook;
         }
 
+        @NonNull
         public Book[] newArray(int size) {
             return new Book[size];
         }
@@ -54,7 +57,7 @@ public class Book implements Parcelable {
         return 0;
     }
 
-    public void writeToParcel(Parcel parcel, int flags) {
+    public void writeToParcel(@NonNull Parcel parcel, int flags) {
         parcel.writeString(bookName);
         parcel.writeString(author);
         parcel.writeInt(publishTime);

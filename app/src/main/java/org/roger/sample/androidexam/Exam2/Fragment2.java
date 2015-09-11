@@ -2,6 +2,7 @@ package org.roger.sample.androidexam.Exam2;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import org.roger.sample.androidexam.R;
 public class Fragment2 extends ProgressFragment {
     private View mContentView;
     private Handler mHandler;
+    @NonNull
     private Runnable mShowContentRunnable = new Runnable() {
 
         @Override
@@ -22,6 +24,7 @@ public class Fragment2 extends ProgressFragment {
 
     };
 
+    @NonNull
     public static Fragment2 newInstance() {
         Fragment2 fragment = new Fragment2();
         return fragment;
@@ -34,7 +37,7 @@ public class Fragment2 extends ProgressFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContentView = inflater.inflate(R.layout.e2_progress_content, null);
         return super.onCreateView(inflater, container, savedInstanceState);
     }

@@ -2,6 +2,7 @@ package org.roger.sample.androidexam.Exam5_Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,15 +28,18 @@ class ViewHolder {
 }
 public class MyAdapter extends BaseAdapter{
     public static final String TAG = "MyAdapter";
+    @Nullable
     List<Map<String,Object>> m_data = null;
+    @Nullable
     Context m_context = null;
     public MyAdapter(List<Map<String,Object>> data , Context context) {
         m_data = data;
         m_context = context;
     }
 
+    @Nullable
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, @Nullable View convertView, ViewGroup parent) {
         Log.d(TAG, "getView position = " + position);
         ViewHolder holder = null;
         // 如果缓存convertView为空，则需要创建View

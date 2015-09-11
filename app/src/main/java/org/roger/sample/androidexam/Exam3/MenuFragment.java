@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
     /**
      * 用于填充ListView的数据，这里就简单只用了两条数据。
      */
+    @NonNull
     private String[] menuItems = { "Sound", "Display" };
 
     /**
@@ -39,7 +41,7 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
      * 当Activity和Fragment建立关联时，初始化适配器中的数据。
      */
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
         adapter = new ArrayAdapter<String>(activity, android.R.layout.simple_list_item_1, menuItems);
     }
@@ -48,7 +50,7 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
      * 加载menu_fragment布局文件，为ListView绑定了适配器，并设置了监听事件。
      */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.menu_fragment, container, false);
         menuList = (ListView) view.findViewById(R.id.menu_list);
         menuList.setAdapter(adapter);

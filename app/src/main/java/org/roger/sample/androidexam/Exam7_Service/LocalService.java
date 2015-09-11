@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.Binder;
 import android.os.Environment;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -14,10 +15,13 @@ import android.util.Log;
  */
 public class LocalService extends Service {
     public static final String TAG = "LocalService";
+    @Nullable
     public SimpleBinder simpleBinder = null;
+    @Nullable
     public LocalService localService = null;
 
     public class SimpleBinder extends Binder {
+        @NonNull
         public LocalService getService() {
             return LocalService.this;
         }
@@ -27,6 +31,7 @@ public class LocalService extends Service {
         }
     }
 
+    @Nullable
     public Bitmap getDefaultBitmap() {
         String path = Environment.getExternalStorageDirectory() + "/test_big.jpg";
         return LocalActivity.getLocalBitmap(path);
@@ -74,5 +79,6 @@ public class LocalService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
+    @Nullable
     private BroadcastReceiverHelper rhelper;
 }

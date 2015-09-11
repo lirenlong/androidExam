@@ -13,14 +13,19 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.roger.sample.androidexam.R;
 
 public class BroadcastReceiverHelper extends BroadcastReceiver {
 
+    @Nullable
     NotificationManager mn = null;
+    @Nullable
     Notification notification = null;
+    @Nullable
     Context ct = null;
     BroadcastReceiverHelper receiver;
 
@@ -30,14 +35,14 @@ public class BroadcastReceiverHelper extends BroadcastReceiver {
     }
 
     //注册
-    public void registerAction(String action) {
+    public void registerAction(@NonNull String action) {
         IntentFilter filter = new IntentFilter();
         filter.addAction(action);
         ct.registerReceiver(receiver, filter);
     }
 
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(@NonNull Context context, @NonNull Intent intent) {
         Log.i("BroadcastReceiverHelper", "BroadcastReceiverHelper's thread name : " + Thread.currentThread().getName());//
 
         String msg = intent.getStringExtra("msg");

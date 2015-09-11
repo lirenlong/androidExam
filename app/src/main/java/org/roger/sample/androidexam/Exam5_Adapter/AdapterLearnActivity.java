@@ -1,6 +1,8 @@
 package org.roger.sample.androidexam.Exam5_Adapter;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,6 +18,7 @@ import java.util.Map;
 
 public class AdapterLearnActivity extends Activity {
 
+    @Nullable
     private List<Map<String, Object>> data = null;
 
     @Override
@@ -28,6 +31,7 @@ public class AdapterLearnActivity extends Activity {
         lv.setAdapter(new MyAdapter(data, this));
     }
 
+    @NonNull
     private List<Map<String, Object>> getListViewData() {
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 

@@ -3,6 +3,7 @@ package org.roger.sample.androidexam;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import org.roger.sample.androidexam.Exam0_wasteland.goToGetIt;
@@ -23,7 +24,7 @@ public class InterfaceActivity extends Activity {
         setContentView(R.layout.activity_interface);
     }
 
-    public void onBtnClick(View view) {
+    public void onBtnClick(@NonNull View view) {
         Intent i = new Intent();
         switch (view.getId()) {
             case R.id.exam0:

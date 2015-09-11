@@ -8,6 +8,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +29,7 @@ import java.io.Serializable;
 
 public class LocalActivity extends ActionBarActivity {
 
+    @Nullable
     private ServiceConnection sc = null;
     public static final String TAG = "LocalActivity";
     private boolean isBind = false;
@@ -71,7 +74,7 @@ public class LocalActivity extends ActionBarActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -105,7 +108,7 @@ public class LocalActivity extends ActionBarActivity {
     lastActivity=-13s713ms restartTime=-13s713ms createdFromFg=true
     startRequested=true delayedStop=false stopIfKilled=false callStart=true lastStartId=1
     */
-    public void onBtnClick(View obj) {
+    public void onBtnClick(@NonNull View obj) {
         Intent i = new Intent();
 
         switch (obj.getId()) {
@@ -137,7 +140,7 @@ public class LocalActivity extends ActionBarActivity {
         }
     }
 
-    private void doSendBroadcast(Intent i) {
+    private void doSendBroadcast(@NonNull Intent i) {
         String path = Environment.getExternalStorageDirectory() + "/test_small.jpg";
         //test_big.jpg 1.2M
         //test_medium.jpg 640k
@@ -152,7 +155,7 @@ public class LocalActivity extends ActionBarActivity {
         sendBroadcast(i);
     }
 
-    private void doStartService(Intent i) {
+    private void doStartService(@NonNull Intent i) {
         i.setClass(this, LocalService.class);
         Book mBook = new Book();
         mBook.setBookName("Android Tutor");
@@ -184,7 +187,7 @@ public class LocalActivity extends ActionBarActivity {
         startActivity(mIntent);
     }
 
-    private void doIntentBig(Intent i) {
+    private void doIntentBig(@NonNull Intent i) {
         //这个路径是不可以的，需要通过Environment.getExternalStorageDirectory()
 //        FileInputStream aa = getLocalFile("/storage/emulated/legacy/test.jpg");
 
@@ -199,7 +202,7 @@ public class LocalActivity extends ActionBarActivity {
         }
     }
 
-    private void doIntentSerializeal(Intent i) {
+    private void doIntentSerializeal(@NonNull Intent i) {
         Person person = new Person("JimGreen", 21);
 
 //        Bundle bundle = new Bundle();
@@ -236,7 +239,7 @@ public class LocalActivity extends ActionBarActivity {
     }
 
 
-    public static Bitmap getLocalBitmap(String url) {
+    public static Bitmap getLocalBitmap(@NonNull String url) {
         FileInputStream fis = null;
         Bitmap bitmap;
         try {
@@ -249,7 +252,7 @@ public class LocalActivity extends ActionBarActivity {
         }
     }
 
-    public static FileInputStream getLocalFile(String url) {
+    public static FileInputStream getLocalFile(@NonNull String url) {
         FileInputStream fis = null;
         try {
             fis = new FileInputStream(url);

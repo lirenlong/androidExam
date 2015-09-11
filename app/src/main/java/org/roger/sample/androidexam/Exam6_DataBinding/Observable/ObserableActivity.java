@@ -2,6 +2,8 @@ package org.roger.sample.androidexam.Exam6_DataBinding.Observable;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableArrayMap;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,8 +15,11 @@ import org.roger.sample.androidexam.databinding.E6ActivityObservableBinding;
 
 public class ObserableActivity extends ActionBarActivity {
 
+    @Nullable
     private ObservableUser ou = null;
+    @Nullable
     private PlainUser pu = null;
+    @NonNull
     private ObservableArrayMap<String, Object> userMap = new ObservableArrayMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +45,7 @@ public class ObserableActivity extends ActionBarActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
