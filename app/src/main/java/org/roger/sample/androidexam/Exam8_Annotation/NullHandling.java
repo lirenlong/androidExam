@@ -1,8 +1,8 @@
 package org.roger.sample.androidexam.Exam8_Annotation;
 
 import android.support.annotation.NonNull;
-import edu.umd.cs.findbugs.annotations;
-import javax.annotation.CheckForNull;
+//import edu.umd.cs.findbugs.annotations;
+//import javax.annotation.CheckForNull;
 
 import java.util.Locale;
 
@@ -38,7 +38,7 @@ import java.util.Locale;
 //}
 
 public class NullHandling {
-    @CheckForNull
+//    @CheckForNull
     public String value;
     public int getValueLength() {
         return this.value.length();
