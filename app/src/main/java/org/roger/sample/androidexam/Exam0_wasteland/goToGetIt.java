@@ -73,18 +73,18 @@ public class goToGetIt extends Activity{
 
         ClassLoader mcl = new DexClassLoader(this.getApplication().getFilesDir().getAbsolutePath() + "/" + "a.apk",this.getApplication().getFilesDir().getAbsolutePath(),null,cl);
         while(mcl != null) {
-            Log.i("goToGetIt","classloader is " + mcl);
+            Log.i("classload","classloader is " + mcl);
             mcl = mcl.getParent();
         }
-        Log.i("goToGetIt","last classloader is " + mcl);
+        Log.i("classload","last classloader is " + mcl);
 
 
 
         while(cl != null) {
-            Log.i("goToGetIt","classloader is " + cl);
+            Log.i("classload","classloader is " + cl);
             cl = cl.getParent();
         }
-        Log.i("goToGetIt","last classloader is " + cl);
+        Log.i("classload","last classloader is " + cl);
 
     }
 
