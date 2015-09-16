@@ -17,6 +17,6 @@ public class ChildOfForClassLoadTest extends ForClassLoadTest {
     public void fun() {
         Log.i("classload","Child's fun()");
         cref = new ClassRef();
-        // 这里会在Child's fun()之后，执行ClassRef中的static块。不写new的话，不会初始化。那么如何再现NoClassDefException的问题呢？
+        // 这里会在Child's fun()之后，执行ClassRef中的static块。不写new的话，不会初始化。那么如何再现 NoClassDefFoundException 的问题呢？
     }
 }
