@@ -15,7 +15,55 @@ public class goToGetIt extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        testUri();
-        classLoaderLearn();
+//        classLoaderLearn();
+//        testClassLoad();
+//        testClassInitialize();
+        smartObjectTest();
+    }
+
+    private void smartObjectTest() {
+        ForClassLoadTest obj = new ChildOfForClassLoadTest();
+        obj.fun();
+    }
+
+    private void testClassInitialize() {
+        Log.i("classload","before testClassInitialize");
+        Class target = ForClassLoadTest.class;
+//        Log.i("roger","ForClassLoadTest's static a = " + ForClassLoadTest.a);//如果有机会输出a的话，应该是0.等初始化之后，变成1.
+//        try {
+//            Object obj = (Object) target.newInstance();
+//        } catch (InstantiationException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
+        Log.i("classload", "after testClassInitialize");
+
+
+//        如果调用了newInstance()才会输出ForClassLoadTest's initialization.只是ForClassLoadTest.class;不会初始化。
+//        09-16 08:46:43.630    5719-5719/org.roger.sample.androidexam I/roger﹕ before testClassInitialize
+//        09-16 08:46:43.630    5719-5719/org.roger.sample.androidexam I/roger﹕ ForClassLoadTest's initialization.
+//        09-16 08:46:43.630    5719-5719/org.roger.sample.androidexam I/roger﹕ after testClassInitialize
+    }
+
+    private void testClassLoad() {
+        // class的装载对象，经历3个步骤。才能使用对象实例。
+        // 1. 加载到内存(将二进制的class读取到内存中)
+        // 2. 链接(申请内存空间，并赋上系统默认值，比如int为0等，链接并加载引用的类)
+        // 3. 初始化(会执行static块，并赋上用户指定的值)
+        Log.i("classload","before load ForClassLoadTest");
+        ClassLoader cl = this.getApplication().getClassLoader();
+        try {
+            Class target = cl.loadClass("org.roger.sample.androidexam.Exam0_wasteland.ForClassLoadTest");
+            Object obj = (Object) target.newInstance();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        Log.i("classload","after load ForClassLoadTest");
     }
 
     private void classLoaderLearn() {
