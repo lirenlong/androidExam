@@ -2,12 +2,14 @@ package org.roger.sample.androidexam.Exam7_Service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Binder;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 /**
@@ -73,7 +75,8 @@ public class LocalService extends Service {
             public void run() {
                 Log.i(TAG, "NewThread" + "--runnable. Thread name : " + Thread.currentThread().getName() + ". Thread id : " + Thread.currentThread().getId());
                 rhelper= new BroadcastReceiverHelper(localService);
-                rhelper.registerAction("com.roger.broadcastreceiver");
+//                rhelper.registerAction("com.roger.broadcastreceiver");
+                LocalBroadcastManager.getInstance(localService).registerReceiver(rhelper,new IntentFilter("com.roger.broadcastreceiver"));
             }
         }).start();
         return super.onStartCommand(intent, flags, startId);
