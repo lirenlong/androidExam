@@ -133,3 +133,7 @@ intent不建议传递serializal和parcelable，因为积累多了，就可能tra
 另外：貌似调用sendBroadcastSync，会阻塞在所有Intent的接受者执行完毕，所以用这个api，应该会导致，都是在主线程执行。
 
 **注意：一定要注意注册广播的位置，比如不小心写在了onStartCommand中，一旦这个service被start了多次，那么就会注册多次，那么当send的时候，就会执行多次，那么onReceive中的内容就惨了。所以要注意注册位置，send的位置，还要注意onReceive会不会有多次执行的bug**
+
+
+## 2015-09-18
+LocalBoradcastManager声明的receiver，可以通过在非主线程中调用`LocalBroadcastManager.getInstance(context).sendBroadcastSync(new Intent("com.roger.broadcastreceiver"));`，实现receive在同样的线程中被调用，而不是通常的在主线程被调用。
