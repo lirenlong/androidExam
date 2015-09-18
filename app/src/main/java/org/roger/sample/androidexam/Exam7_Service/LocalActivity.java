@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +35,8 @@ public class LocalActivity extends ActionBarActivity {
     public static final String TAG = "LocalActivity";
     private boolean isBind = false;
 
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "LocalActivity onCreate");
@@ -41,6 +44,8 @@ public class LocalActivity extends ActionBarActivity {
         setContentView(R.layout.activity_local);
 
         initialServiceConnection();
+
+        context = this;
     }
 
     private void initialServiceConnection() {
@@ -148,11 +153,19 @@ public class LocalActivity extends ActionBarActivity {
 
         Bitmap bitmap = getLocalBitmap(path);
         i.putExtra("bitmap", bitmap);
-        i.putExtra("who",1);
-        i.putExtra("msg","hello LocalService from LocalAcitivty via notifaction.");
+        i.putExtra("who", 1);
+        i.putExtra("msg", "hello LocalService from LocalAcitivty via notifaction.");
 
         i.setAction("com.roger.broadcastreceiver");
-        sendBroadcast(i);
+//        sendBroadcast(i);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.i("roger","broadcastreceiver, send broadcast in thread = " + Thread.currentThread().getName());
+                LocalBroadcastManager.getInstance(context).sendBroadcastSync(new Intent("com.roger.broadcastreceiver"));
+            }
+        }).start();
+
     }
 
     private void doStartService(@NonNull Intent i) {
