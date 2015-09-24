@@ -148,7 +148,7 @@ E/AndroidRuntime(18374): 	... 14 more
 ```
 
 ## 4
-如果是用Version
+如果是用Version(后来发现，这个Version的例子不当，因为Android.jar里面还是有的，所以编译过了。正常情况下，应该编译不过)
 
 ```
 D/AndroidRuntime(21370): Shutting down VM
@@ -215,4 +215,100 @@ W/System.err(22154): 	at java.lang.reflect.Method.invoke(Method.java:515)
 W/System.err(22154): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:1291)
 W/System.err(22154): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1107)
 W/System.err(22154): 	at dalvik.system.NativeStart.main(Native Method)
+```
+
+为什么正式包，打log，当crash后，还是能看到混淆对应的原始类名？
+
+classnotfound，是报原始名，还是混淆后的名字。
+
+
+## 6
+
+```
+	public void onCreate() {
+
+		TMLog.d("hotpatch","onCreate");
+		TMHotpatchManeger.getInstance().init(LoadType.JUST_LOAD_LOCAL);
+		TMLog.d("hotpatch", "after init");
+	}
+```
+
+```
+I/dalvikvm(15083): Could not find method com.taobao.updatecenter.hotpatch.HotPatchManager.getInstance, referenced from method com.tmall.wireless.module.hotpatch.TMHotpatchManeger.initHotPatch
+W/dalvikvm(15083): VFY: unable to resolve static method 35892: Lcom/taobao/updatecenter/hotpatch/HotPatchManager;.getInstance ()Lcom/taobao/updatecenter/hotpatch/HotPatchManager;
+W/dalvikvm(15083): Exception Ljava/lang/NullPointerException; thrown while initializing Lcom/tmall/wireless/util/TMEnvUtils;
+W/dalvikvm(15083): threadid=1: thread exiting with uncaught exception (group=0x41610c50)
+```
+
+onCreate的log没有输出来，而是在dalvikvm报了问题。
+
+
+混淆之后：
+
+```
+I/dalvikvm(20207): Could not find method bqs.a, referenced from method dpe.a
+W/dalvikvm(20207): VFY: unable to resolve static method 15576: Lbqs;.a ()Lbqs;
+W/dalvikvm(20207): Exception Ljava/lang/NullPointerException; thrown while initializing Lelo;
+W/dalvikvm(20207): threadid=1: thread exiting with uncaught exception (group=0x41610c50)
+```
+
+try catch之后
+
+```
+I/dalvikvm(23851): Could not find method bqs.a, referenced from method dpe.a
+W/dalvikvm(23851): VFY: unable to resolve static method 15580: Lbqs;.a ()Lbqs;
+W/dalvikvm(23851): Exception Ljava/lang/NullPointerException; thrown while initializing Lelo;
+W/System.err(23851): java.lang.ExceptionInInitializerError
+W/System.err(23851): 	at dpe.a(TMHotpatchManeger.java:57)
+W/System.err(23851): 	at dpe.a(TMHotpatchManeger.java:52)
+W/System.err(23851): 	at com.tmall.wireless.application.TMApplication.onCreate(TMApplication.java:94)
+W/System.err(23851): 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1009)
+W/System.err(23851): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:4613)
+W/System.err(23851): 	at android.app.ActivityThread.access$1800(ActivityThread.java:139)
+W/System.err(23851): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1316)
+W/System.err(23851): 	at android.os.Handler.dispatchMessage(Handler.java:102)
+W/System.err(23851): 	at android.os.Looper.loop(Looper.java:136)
+W/System.err(23851): 	at android.app.ActivityThread.main(ActivityThread.java:5314)
+W/System.err(23851): 	at java.lang.reflect.Method.invokeNative(Native Method)
+W/System.err(23851): 	at java.lang.reflect.Method.invoke(Method.java:515)
+W/System.err(23851): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:864)
+W/System.err(23851): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:680)
+W/System.err(23851): 	at dalvik.system.NativeStart.main(Native Method)
+W/System.err(23851): Caused by: java.lang.NullPointerException
+W/System.err(23851): 	at elo.<clinit>(TMEnvUtils.java:42)
+W/System.err(23851): 	... 15 more
+```
+
+try catch hotpatchmanager之后
+
+```
+09-24 14:58:55.385 31366 31433 I JobDetect: job end ===> accs cost time: 527 thread: pool-1-thread-2-threadTotol-2
+09-24 14:58:55.465 31499 31499 I dalvikvm: Could not find method bqs.a, referenced from method com.tmall.wireless.application.TMApplication.onCreate
+09-24 14:58:55.465 31499 31499 W dalvikvm: VFY: unable to resolve static method 15576: Lbqs;.a ()Lbqs;
+09-24 14:58:55.490 31499 31499 W System.err: java.lang.NoClassDefFoundError: bqs
+09-24 14:58:55.490 31499 31499 W System.err: 	at com.tmall.wireless.application.TMApplication.onCreate(TMApplication.java:96)
+09-24 14:58:55.490 31499 31499 W System.err: 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1009)
+09-24 14:58:55.490 31499 31499 W System.err: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:4613)
+09-24 14:58:55.490 31499 31499 W System.err: 	at android.app.ActivityThread.access$1800(ActivityThread.java:139)
+09-24 14:58:55.490 31499 31499 W System.err: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1316)
+09-24 14:58:55.490 31499 31499 W System.err: 	at android.os.Handler.dispatchMessage(Handler.java:102)
+09-24 14:58:55.490 31499 31499 W System.err: 	at android.os.Looper.loop(Looper.java:136)
+09-24 14:58:55.490 31499 31499 W System.err: 	at android.app.ActivityThread.main(ActivityThread.java:5314)
+09-24 14:58:55.490 31499 31499 W System.err: 	at java.lang.reflect.Method.invokeNative(Native Method)
+09-24 14:58:55.490 31499 31499 W System.err: 	at java.lang.reflect.Method.invoke(Method.java:515)
+09-24 14:58:55.490 31499 31499 W System.err: 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:864)
+09-24 14:58:55.490 31499 31499 W System.err: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:680)
+09-24 14:58:55.490 31499 31499 W System.err: 	at dalvik.system.NativeStart.main(Native Method)
+```
+
+**所以说找不到HOTPATCH，log应该出来的是混淆后的类名**，但是当前报出的是原名，说明有字符串调用的，但是并没有。
+
+
+
+去除try catch
+
+```
+I/dalvikvm( 2169): Could not find method bqs.a, referenced from method com.tmall.wireless.application.TMApplication.onCreate
+W/dalvikvm( 2169): VFY: unable to resolve static method 15620: Lbqs;.a ()Lbqs;
+W/dalvikvm( 2169): threadid=1: thread exiting with uncaught exception (group=0x41610c50)
 ```
