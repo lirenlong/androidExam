@@ -62,8 +62,15 @@ public class goToGetIt extends Activity {
 //            }
 //        };
 
+//        try {
+//            Version.id();
+//        } catch (Throwable e) {
+//            Log.i("roger","catched");
+//            e.printStackTrace();
+//        }
+
         try {
-            Version.id();
+            HotPatchManager ins = HotPatchManager.getInstance();
         } catch (Throwable e) {
             Log.i("roger","catched");
             e.printStackTrace();
