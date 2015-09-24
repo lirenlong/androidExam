@@ -137,3 +137,9 @@ intent不建议传递serializal和parcelable，因为积累多了，就可能tra
 
 ## 2015-09-18
 LocalBoradcastManager声明的receiver，可以通过在非主线程中调用`LocalBroadcastManager.getInstance(context).sendBroadcastSync(new Intent("com.roger.broadcastreceiver"));`，实现receive在同样的线程中被调用，而不是通常的在主线程被调用。
+
+## 2015-09-21
+
+1. http://stackoverflow.com/questions/11451393/what-to-do-on-transactiontoolargeexception/16895870#16895870  contentProvider的cursor没有close。
+
+2. http://stackoverflow.com/questions/24253976/android-package-manager-has-died-with-transactiontoolargeexception getInstalledApplications
