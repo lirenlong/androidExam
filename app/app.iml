@@ -104,8 +104,8 @@
     <orderEntry type="library" exported="" name="drawee-0.4.0" level="project" />
     <orderEntry type="library" exported="" name="commons-io-2.4" level="project" />
     <orderEntry type="library" exported="" name="progressfragment-1.4.0" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="antlr4-4.5" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="fresco-0.4.0" level="project" />
     <orderEntry type="library" exported="" name="antlr4-annotations-4.5" level="project" />

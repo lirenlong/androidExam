@@ -14,8 +14,6 @@ import org.roger.sample.androidexam.R;
 
 import dalvik.system.DexClassLoader;
 
-import com.taobao.updatecenter.hotpatch.HotPatchManager;
-
 /**
  * Created by liren on 15/8/26.
  */
