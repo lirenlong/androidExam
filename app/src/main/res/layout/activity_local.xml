@@ -1,0 +1,66 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" />
+
+    <Button
+        android:id="@+id/startService"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="startService" />
+
+    <Button
+        android:id="@+id/bind"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="bind" />
+
+    <Button
+        android:id="@+id/unbind"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="unbind" />
+
+    <Button
+        android:id="@+id/IntentSerializal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="IntentSerializal" />
+
+    <Button
+        android:id="@+id/IntentParcelable"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="IntentParcelable" />
+
+    <Button
+        android:id="@+id/IntentBigData"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="IntentBigData" />
+
+    <Button
+        android:id="@+id/SendBroadCast"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="Send BroadCast to service then notifcation to intentActivity" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageview"/>
+
+</LinearLayout>
