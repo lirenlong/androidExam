@@ -24,6 +24,7 @@ android {
 }
 
 dependencies {
+    compile 'com.github.mmin18.layoutcast:library:1.+@aar'
     testCompile files('libs/junit-4.12.jar')
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.facebook.fresco:fresco:0.4.0'

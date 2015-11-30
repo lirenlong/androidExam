@@ -19,6 +19,7 @@
     <string name="title_activity_dbinterface">DataBinding Sample</string>
     <string name="title_activity_obserable">ObservableActivity</string>
     <string name="title_activity_local">ServiceActivity</string>
+    <string name="title_activity_LayoutTest">LayoutTestActivity</string>
 
 
     <!--databinding uses-->

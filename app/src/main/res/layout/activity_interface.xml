@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="onBtnClick"
-                android:text="exam1" />
+                android:text="exam11" />
 
             <Button
                 android:id="@+id/exam2"
@@ -76,6 +76,13 @@
                 android:layout_height="wrap_content"
                 android:onClick="onBtnClick"
                 android:text="@string/title_activity_local" />
+
+            <Button
+                android:id="@+id/exam9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="@string/title_activity_LayoutTest" />
         </LinearLayout>
     </ScrollView>
 
