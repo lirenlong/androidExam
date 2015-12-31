@@ -11,9 +11,9 @@
 ## bind方式的service
 bindService需要一个ServiceConnection。通过bind，可以将activity绑定到service上；通过ServiceConnection可以获取IBinder，进而对service操作。
 
-* 注意若只有一个activity绑定到service上，则activity销毁，则service销毁，无论service是否执行完。这其中包括，横竖屏切换的情况：切一下，servcie就停止了。
+* 注意若只有一个activity绑定到service上，则activity销毁，则service销毁，无论service是否执行完。这其中包括，横竖屏切换的情况：切一下，servcie就停止了，（2015-12-31后来发现，横竖屏切换，服务没有停止）
 * 多次unbindService会抛出异常
-* 记得重载Service.onBind并且不要返回null（否则运行了Service但是没有绑定）
+* 记得重载Service.onBind并且不要返回null（否则运行了Service但是ServiceConnection没有建联的回调）
 
 # 关于transactionTooLargeException问题
 
