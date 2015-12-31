@@ -70,10 +70,10 @@
             android:label="@string/title_activity_local" />
         <activity
             android:name=".Exam7_Service.IntentActivity"
-            android:label="@string/title_activity_intent"/>
+            android:label="@string/title_activity_intent" />
         <activity
             android:name=".Exam9_layoutCast.LayoutCastTest"
-            android:label="@string/title_activity_LayoutTest"/>
+            android:label="@string/title_activity_LayoutTest" />
 
         <!--other activities-->
         <activity android:name="com.github.mmin18.layoutcast.ResetActivity" />
@@ -83,6 +83,10 @@
         <service
             android:name=".Exam7_Service.LocalService"
             android:exported="false"></service>
+
+        <service
+            android:name=".Exam7_Service.ProcessService"
+            android:process=":process"></service>
 
     </application>
 
