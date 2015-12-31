@@ -67,13 +67,6 @@ public class goToGetIt extends Activity {
 //            e.printStackTrace();
 //        }
 
-        try {
-            HotPatchManager ins = HotPatchManager.getInstance();
-        } catch (Throwable e) {
-            Log.i("roger","catched");
-            e.printStackTrace();
-        }
-
     }
 
     private void smartObjectTest() {

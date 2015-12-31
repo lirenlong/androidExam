@@ -34,13 +34,6 @@ public class BroadcastReceiverHelper extends BroadcastReceiver {
         receiver = this;
     }
 
-    //注册
-    public void registerAction(@NonNull String action) {
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(action);
-        ct.registerReceiver(receiver, filter);
-    }
-
     @Override
     public void onReceive(@NonNull Context context, @NonNull Intent intent) {
         Log.i("BroadcastReceiverHelper", "BroadcastReceiverHelper's thread name : " + Thread.currentThread().getName());//
