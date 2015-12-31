@@ -53,39 +53,35 @@ public class LocalActivity extends ActionBarActivity {
         sc = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
+                Log.i(TAG, "onServiceConnected");
                 LocalService.SimpleBinder sBinder = ((LocalService.SimpleBinder) service);
                 Log.i(TAG, "3 + 2 = " + sBinder.add(3, 2));
                 Log.i(TAG, sBinder.getService().toString());
 
-                // 测试通过service获取，service上的bitmap。
-                Bitmap bm = sBinder.getService().getDefaultBitmap();
-                if (bm != null) {
-                    ((ImageView) findViewById(R.id.imageview)).setImageBitmap(bm);
-                }
+                // TEST_用Service传递大数据 测试通过service获取，service上的bitmap。
+//                Bitmap bm = sBinder.getService().getDefaultBitmap();
+//                if (bm != null) {
+//                    ((ImageView) findViewById(R.id.imageview)).setImageBitmap(bm);
+//                }
             }
 
             @Override
             public void onServiceDisconnected(ComponentName name) {
-
+                Log.i(TAG, "onServiceDisconnected");
             }
         };
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_local, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -98,7 +94,7 @@ public class LocalActivity extends ActionBarActivity {
         super.onDestroy();
 
         // stop the local service
-//        stopService(new Intent(this, LocalService.class));
+        stopService(new Intent(this, LocalService.class));
     }
 
     /*
@@ -117,6 +113,9 @@ public class LocalActivity extends ActionBarActivity {
         Intent i = new Intent();
 
         switch (obj.getId()) {
+            case R.id.startService:
+                doStartService(i);
+                break;
             case R.id.bind:
                 bindService(new Intent(LocalActivity.this, LocalService.class), sc, Context.BIND_AUTO_CREATE);
                 isBind = true;
@@ -136,13 +135,18 @@ public class LocalActivity extends ActionBarActivity {
             case R.id.IntentBigData:
                 doIntentBig(i);
                 break;
-            case R.id.startService:
-                doStartService(i);
-                break;
             case R.id.SendBroadCast:
                 doSendBroadcast(i);
                 break;
+            case R.id.StartRemoteService:
+                doStartRemoteService(i);
+                break;
         }
+    }
+
+    private void doStartRemoteService(Intent i) {
+        i.setClass(this, ProcessService.class);
+        startService(i);
     }
 
     private void doSendBroadcast(@NonNull Intent i) {
@@ -161,7 +165,7 @@ public class LocalActivity extends ActionBarActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.i("roger","broadcastreceiver, send broadcast in thread = " + Thread.currentThread().getName());
+                Log.i("roger", "broadcastreceiver, send broadcast in thread = " + Thread.currentThread().getName());
                 LocalBroadcastManager.getInstance(context).sendBroadcastSync(new Intent("com.roger.broadcastreceiver"));
             }
         }).start();

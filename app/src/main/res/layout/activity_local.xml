@@ -63,4 +63,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageview"/>
 
+    <Button
+        android:id="@+id/StartRemoteService"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="StartRemoteService" />
+
 </LinearLayout>

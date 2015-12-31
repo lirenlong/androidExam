@@ -52,15 +52,10 @@ public class LocalService extends Service {
     public void onDestroy() {
         Log.i(TAG, TAG + "--onDestroy");
         super.onDestroy();
-        unregisterReceiver(rhelper);
+        LocalBroadcastManager.getInstance(localService).unregisterReceiver(rhelper);
     }
 
-    @Nullable
     @Override
-//    public IBinder onBind(Intent intent) {
-//        Log.i(TAG, TAG + "onBind");
-//        return null;
-//    }
     public IBinder onBind(Intent intent) {
         Log.i(TAG, TAG + "--onBind");
         return simpleBinder;
@@ -70,15 +65,10 @@ public class LocalService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i(TAG, TAG + "--onStartCommand. Thread name : " + Thread.currentThread().getId());//main
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Log.i(TAG, "NewThread" + "--runnable. Thread name : " + Thread.currentThread().getName() + ". Thread id : " + Thread.currentThread().getId());
-                rhelper= new BroadcastReceiverHelper(localService);
-//                rhelper.registerAction("com.roger.broadcastreceiver");
-                LocalBroadcastManager.getInstance(localService).registerReceiver(rhelper,new IntentFilter("com.roger.broadcastreceiver"));
-            }
-        }).start();
+        Log.i(TAG, "NewThread" + "--runnable. Thread name : " + Thread.currentThread().getName() + ". Thread id : " + Thread.currentThread().getId());
+        rhelper = new BroadcastReceiverHelper(localService);
+        LocalBroadcastManager.getInstance(localService).registerReceiver(rhelper, new IntentFilter("com.roger.broadcastreceiver"));
+
         return super.onStartCommand(intent, flags, startId);
     }
 
