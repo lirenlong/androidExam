@@ -12,6 +12,9 @@ import junit.runner.Version;
 
 import org.roger.sample.androidexam.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import dalvik.system.DexClassLoader;
 
 /**
@@ -22,6 +25,12 @@ public class goToGetIt extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gotogetit_activity);
+
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = sDateFormat.format(new Date());
+
+        Log.i("roger", date);
+
 //        testUri();
 //        classLoaderLearn();
 //        testClassLoad();

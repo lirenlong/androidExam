@@ -41,7 +41,7 @@ public class LocalService extends Service {
 
     @Override
     public void onCreate() {
-        Log.i(TAG, TAG + "--onCreate");
+        Log.i(TAG, TAG + "--onCreate" + ", serviceName = " + this.toString());
         super.onCreate();
 
         simpleBinder = new SimpleBinder();
@@ -50,20 +50,20 @@ public class LocalService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.i(TAG, TAG + "--onDestroy");
+        Log.i(TAG, TAG + "--onDestroy"  + ", serviceName = " + this.toString());
         super.onDestroy();
         LocalBroadcastManager.getInstance(localService).unregisterReceiver(rhelper);
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.i(TAG, TAG + "--onBind");
+        Log.i(TAG, TAG + "--onBind" + ", serviceName = " + this.toString());
         return simpleBinder;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i(TAG, TAG + "--onStartCommand. Thread name : " + Thread.currentThread().getId());//main
+        Log.i(TAG, TAG + "--onStartCommand. Thread name : " + Thread.currentThread().getId() + ", serviceName = " + this.toString());//main
 
         Log.i(TAG, "NewThread" + "--runnable. Thread name : " + Thread.currentThread().getName() + ". Thread id : " + Thread.currentThread().getId());
         rhelper = new BroadcastReceiverHelper(localService);
