@@ -1,14 +1,27 @@
 例子参考[here](http://www.cnblogs.com/newcj/archive/2011/05/30/2061370.html)
 
-## start方式的service
+## start方式的生命周期控制
 
 * 无论start多少次service，都只会执行一次onCreate，多次onStartCommand
 * 注意stop它，多次start调用，只需一次stop
-* LocalActivity中的onDestroy中，如果不stopservice，则：离开activity后，仍然存活；横竖屏切换时，只有onStartCommand被调（否则onDestroy,onCreate,onStartCommand都会被调用）
+* LocalActivity中的onDestroy中：
+  - 若不stopservice，则离开activity后，仍然存活，再次start该service时，是同一个内存中的service。只掉onStartCommand。横竖屏切换时，同样。
+  - 若调用stopservice，则servcie走生命周期onDestroy,onCreate,onStartCommand。
+
+### crash情况分析
+
+分析对于程序crash，service的生命。
+
+* 若同一进程，则service直接被销毁，并没有onDestroy回调的机会
+* 若不同进程，则service会保留下来。
+
+注意：当我输出Thread.getName时，新的service进程输出，仍然是main线程。
+
+> 为什么有的时候，crash会马上唤起一个新的servcie，有时不会。release包也会这样么。
 
 
+## bind方式的生命周期
 
-## bind方式的service
 bindService需要一个ServiceConnection。通过bind，可以将activity绑定到service上；通过ServiceConnection可以获取IBinder，进而对service操作。
 
 * 注意若只有一个activity绑定到service上，则activity销毁，则service销毁，无论service是否执行完。这其中包括，横竖屏切换的情况：切一下，servcie就停止了，（2015-12-31后来发现，横竖屏切换，服务没有停止）
