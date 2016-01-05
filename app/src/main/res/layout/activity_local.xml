@@ -69,5 +69,11 @@
         android:layout_height="wrap_content"
         android:onClick="onBtnClick"
         android:text="StartRemoteService" />
+    <Button
+        android:id="@+id/crashIt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="造crash" />
 
 </LinearLayout>
