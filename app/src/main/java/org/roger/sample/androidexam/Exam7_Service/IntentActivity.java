@@ -27,7 +27,7 @@ public class IntentActivity extends ActionBarActivity {
         Intent i = getIntent();
         LocalActivity.Person person = (LocalActivity.Person) i.getSerializableExtra("person");
         if (person != null) {
-            Log.i("IntentActivity", "Age is " + person.getAge());
+            Log.i(LocalActivity.TAG, "Age is " + person.getAge());
             tv.setText("Age is " + person.getAge());
         }
 
@@ -35,7 +35,7 @@ public class IntentActivity extends ActionBarActivity {
         if (bundle != null) {
             Book book = (Book) bundle.getParcelable("parcelable");
             if(book != null ) {
-                Log.i("IntentActivity", "Author : " + book.getAuthor() + "\nBookName : " + book.getBookName() + "\nPublishTime : " + book.getPublishTime());
+                Log.i(LocalActivity.TAG, "Author : " + book.getAuthor() + "\nBookName : " + book.getBookName() + "\nPublishTime : " + book.getPublishTime());
                 tv.setText("Author : " + book.getAuthor() + "\nBookName : " + book.getBookName() + "\nPublishTime : " + book.getPublishTime());
             }
         }

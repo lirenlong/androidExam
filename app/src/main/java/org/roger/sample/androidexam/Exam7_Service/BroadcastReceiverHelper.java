@@ -36,7 +36,7 @@ public class BroadcastReceiverHelper extends BroadcastReceiver {
 
     @Override
     public void onReceive(@NonNull Context context, @NonNull Intent intent) {
-        Log.i("BroadcastReceiverHelper", "BroadcastReceiverHelper's thread name : " + Thread.currentThread().getName());//
+        Log.i(LocalActivity.TAG, "BroadcastReceiverHelper's thread name : " + Thread.currentThread().getName());//
 
         String msg = intent.getStringExtra("msg");
         int id = intent.getIntExtra("who", 0);
