@@ -16,7 +16,6 @@ import android.util.Log;
  * Created by liren on 15/9/8.
  */
 public class LocalService extends Service {
-    public static final String TAG = "LocalService";
     @Nullable
     public SimpleBinder simpleBinder = null;
     @Nullable
@@ -41,7 +40,7 @@ public class LocalService extends Service {
 
     @Override
     public void onCreate() {
-        Log.i(TAG, TAG + "--onCreate" + ", serviceName = " + this.toString());
+        Log.i(LocalActivity.TAG, "LocalService --onCreate" + ", serviceName = " + this.toString());
         super.onCreate();
 
         simpleBinder = new SimpleBinder();
@@ -50,22 +49,21 @@ public class LocalService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.i(TAG, TAG + "--onDestroy"  + ", serviceName = " + this.toString());
+        Log.i(LocalActivity.TAG, "LocalService --onDestroy"  + ", serviceName = " + this.toString());
         super.onDestroy();
         LocalBroadcastManager.getInstance(localService).unregisterReceiver(rhelper);
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.i(TAG, TAG + "--onBind" + ", serviceName = " + this.toString());
+        Log.i(LocalActivity.TAG, "LocalService --onBind" + ", serviceName = " + this.toString());
         return simpleBinder;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i(TAG, TAG + "--onStartCommand. Thread name : " + Thread.currentThread().getId() + ", serviceName = " + this.toString());//main
+        Log.i(LocalActivity.TAG, "LocalService --onStartCommand. Thread name : " + Thread.currentThread().getName() + ", serviceName = " + this.toString());//main
 
-        Log.i(TAG, "NewThread" + "--runnable. Thread name : " + Thread.currentThread().getName() + ". Thread id : " + Thread.currentThread().getId());
         rhelper = new BroadcastReceiverHelper(localService);
         LocalBroadcastManager.getInstance(localService).registerReceiver(rhelper, new IntentFilter("com.roger.broadcastreceiver"));
 

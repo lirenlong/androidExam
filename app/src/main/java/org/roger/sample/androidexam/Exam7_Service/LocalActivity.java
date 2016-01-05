@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.nfc.Tag;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
@@ -17,22 +18,18 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
-import org.apache.http.ReasonPhraseCatalog;
-import org.roger.sample.androidexam.InterfaceActivity;
 import org.roger.sample.androidexam.R;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.Serializable;
 
 public class LocalActivity extends ActionBarActivity {
 
     @Nullable
     private ServiceConnection sc = null;
-    public static final String TAG = "LocalActivity";
+    public static final String TAG = "EXAM7";
     private boolean isBind = false;
 
     private Context context;
@@ -92,9 +89,10 @@ public class LocalActivity extends ActionBarActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.i(TAG, "LocalActivity onDestory.");
 
         // stop the local service
-        stopService(new Intent(this, LocalService.class));
+//        stopService(new Intent(this, LocalService.class));
     }
 
     /*
@@ -141,6 +139,8 @@ public class LocalActivity extends ActionBarActivity {
             case R.id.StartRemoteService:
                 doStartRemoteService(i);
                 break;
+            case R.id.crashIt:
+                throw new NoSuchFieldError();
         }
     }
 
@@ -165,7 +165,7 @@ public class LocalActivity extends ActionBarActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.i("roger", "broadcastreceiver, send broadcast in thread = " + Thread.currentThread().getName());
+                Log.i(TAG, "broadcastreceiver, send broadcast in thread = " + Thread.currentThread().getName());
                 LocalBroadcastManager.getInstance(context).sendBroadcastSync(new Intent("com.roger.broadcastreceiver"));
             }
         }).start();
