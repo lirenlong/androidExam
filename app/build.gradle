@@ -2,9 +2,16 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.android.databinding'
 
 android {
+    signingConfigs {
+        MyDefault {
+            keyAlias 'androidAlias'
+            keyPassword '654321'
+            storeFile file('/Users/liren/Documents/sign/androidRoger.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
-
     defaultConfig {
         applicationId "org.roger.sample.androidexam"
         minSdkVersion 16
@@ -12,14 +19,29 @@ android {
         versionCode 1
         versionName "1.0"
     }
-
+    signingConfigs {
+        release {
+            keyAlias 'androidAlias'
+            keyPassword '654321'
+            storeFile file('/Users/liren/Documents/sign/androidRoger.jks')
+            storePassword '123456'
+        }
+    }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
+    productFlavors {
+        def var = "abcd"
+        "a" {
+            buildConfigField "String", "TTID", "abc"
+            println var
+        }
+    }
 
 }
 
