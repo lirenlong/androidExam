@@ -137,10 +137,15 @@ public class LocalActivity extends ActionBarActivity {
                 doSendBroadcast(i);
                 break;
             case R.id.StartRemoteService:
-                doStartRemoteService(i);
+//                doStartRemoteService(i);
+                Intent iTmp = new Intent(this, IntentActivity.class);
+                startActivity(iTmp);
                 break;
             case R.id.crashIt:
                 throw new NoSuchFieldError();
+            case R.id.exitTest:
+                System.exit(2);
+                break;
         }
     }
 

@@ -76,4 +76,10 @@
         android:onClick="onBtnClick"
         android:text="造crash" />
 
+    <Button
+        android:id="@+id/exitTest"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="Exit" />
 </LinearLayout>
