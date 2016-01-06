@@ -75,18 +75,20 @@
             android:name=".Exam9_layoutCast.LayoutCastTest"
             android:label="@string/title_activity_LayoutTest" />
 
-        <!--other activities-->
-        <activity android:name="com.github.mmin18.layoutcast.ResetActivity" />
+        <activity
+            android:name=".Exam7_Service.CrashExitActivity"
+            android:label="CrashExitActivity" />
 
+        <!-- other activities -->
+        <activity android:name="com.github.mmin18.layoutcast.ResetActivity" />
 
         <!-- services -->
         <service
             android:name=".Exam7_Service.LocalService"
-            android:exported="false"></service>
-
+            android:exported="false" />
         <service
             android:name=".Exam7_Service.ProcessService"
-            android:process=":process"></service>
+            android:process=":process" />
 
     </application>
 

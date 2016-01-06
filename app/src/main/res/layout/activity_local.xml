@@ -82,4 +82,11 @@
         android:layout_height="wrap_content"
         android:onClick="onBtnClick"
         android:text="Exit" />
+
+    <Button
+        android:id="@+id/crashActivity"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="进入可以crash的ACT" />
 </LinearLayout>
