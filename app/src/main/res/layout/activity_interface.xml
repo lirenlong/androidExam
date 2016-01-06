@@ -83,6 +83,21 @@
                 android:layout_height="wrap_content"
                 android:onClick="onBtnClick"
                 android:text="@string/title_activity_LayoutTest" />
+
+            <Button
+                android:id="@+id/exit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="测退出" />
+
+            <Button
+                android:id="@+id/crash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="测crash" />
+
         </LinearLayout>
     </ScrollView>
 

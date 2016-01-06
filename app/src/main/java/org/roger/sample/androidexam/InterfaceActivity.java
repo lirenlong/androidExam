@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 
 import org.roger.sample.androidexam.Exam0_wasteland.goToGetIt;
@@ -22,6 +23,7 @@ public class InterfaceActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i("InterfaceActivity", "onCreate " + this.toString());
         setContentView(R.layout.activity_interface);
     }
 
@@ -55,7 +57,20 @@ public class InterfaceActivity extends Activity {
             case R.id.exam9:
                 i.setClass(this, LayoutCastTest.class);
                 break;
+            case R.id.exit:
+                this.finish();
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(0);
+                break;
+            case R.id.crash:
+                throw new NoSuchFieldError();
         }
         startActivity(i);
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.i("InterfaceActivity", "onDestroy " + this.toString());
+        super.onDestroy();
     }
 }
