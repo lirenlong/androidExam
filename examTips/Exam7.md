@@ -19,6 +19,10 @@
 
 > 为什么有的时候，crash会马上唤起一个新的servcie，有时不会。release包也会这样么。
 
+答：对于crash，由于时机问题，有时会被ActivityManager进行Scheduling restart of crashed service，有时不会。
+
+而对于killProcess system.exit,要看是在栈底的act调用，还是非栈底。不同于crash的是，Scheduling restart of crashed service一定会调用。而栈底与非栈底的区别在于：栈底，那么有一定概率是当下次点击launch时，才恢复。而非栈底，有act3执行，一定是到act2被onCreate，所以这个时候被杀掉的servcie，一定会被恢复的。
+
 
 ## bind方式的生命周期
 

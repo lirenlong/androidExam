@@ -1,0 +1,187 @@
+实验过程：在task的第一个activity中，做如下事情：
+
+直接exit进程
+
+01-05 05:19:50.733 29248 29248 I Process : Sending signal. PID: 29248 SIG: 9
+01-05 05:19:50.733 17157 17187 E FastMixer: did not receive expected priority boost
+01-05 05:19:50.741 17157 17187 W genymotion_audio: out_write() limiting sleep time 116462 to 39909
+01-05 05:19:50.753 17491 17682 I ActivityManager: Process org.roger.sample.androidexam (pid 29248) has died.
+01-05 05:19:50.753 17491 17698 I WindowState: WIN DEATH: Window{529006cc u0 org.roger.sample.androidexam/org.roger.sample.androidexam.InterfaceActivity}
+01-05 05:19:50.753 17491 17682 W ActivityManager: Force removing ActivityRecord{52a2c110 u0 org.roger.sample.androidexam/.InterfaceActivity t22}: app died, no saved state
+01-05 05:19:50.781 17157 17187 W genymotion_audio: out_write() limiting sleep time 89977 to 39909
+01-05 05:19:50.809 17685 17685 W EGL_genymotion: eglSurfaceAttrib not implemented
+01-05 05:19:50.813 17623 17636 W Binder  : Caught a RuntimeException from the binder stub implementation.
+01-05 05:19:50.813 17623 17636 W Binder  : java.lang.NullPointerException
+01-05 05:19:50.813 17623 17636 W Binder  : 	at android.inputmethodservice.IInputMethodWrapper.setSessionEnabled(IInputMethodWrapper.java:280)
+01-05 05:19:50.813 17623 17636 W Binder  : 	at com.android.internal.view.IInputMethod$Stub.onTransact(IInputMethod.java:129)
+01-05 05:19:50.813 17623 17636 W Binder  : 	at android.os.Binder.execTransact(Binder.java:404)
+01-05 05:19:50.813 17623 17636 W Binder  : 	at dalvik.system.NativeStart.run(Native Method)
+01-05 05:19:50.813 17491 17682 W InputMethodManagerService: Got RemoteException sending setActive(false) notification to pid 29248 uid 10075
+01-05 05:19:50.821 17157 17187 W genymotion_audio: out_write() limiting sleep time 63492 to 39909
+01-05 05:19:50.821 17491 17534 D MobileDataStateTracker: default: setPolicyDataEnable(enabled=true)
+01-05 05:19:50.861 17157 17187 W genymotion_audio: out_write() limiting sleep time 48616 to 39909
+01-05 05:20:21.089 17491 17534 D MobileDataStateTracker: default: setPolicyDataEnable(enabled=true)
+
+
+
+this.finish
+然后exit进程
+
+
+01-05 05:24:14.165 17157 17187 E FastMixer: did not receive expected priority boost
+01-05 05:24:14.173 17157 17187 W genymotion_audio: out_write() limiting sleep time 116462 to 39909
+01-05 05:24:14.209   715   715 I Process : Sending signal. PID: 715 SIG: 9
+01-05 05:24:14.209 17491 17534 D MobileDataStateTracker: default: setPolicyDataEnable(enabled=true)
+01-05 05:24:14.213 17157 17187 W genymotion_audio: out_write() limiting sleep time 89977 to 39909
+01-05 05:24:14.229 17491 17682 I ActivityManager: Process org.roger.sample.androidexam (pid 715) has died.
+01-05 05:24:14.229 17491 17637 I WindowState: WIN DEATH: Window{52935b30 u0 org.roger.sample.androidexam/org.roger.sample.androidexam.InterfaceActivity}
+01-05 05:24:14.253 17157 17187 W genymotion_audio: out_write() limiting sleep time 63492 to 39909
+01-05 05:24:14.281 17685 17685 W EGL_genymotion: eglSurfaceAttrib not implemented
+01-05 05:24:14.281 17623   681 W Binder  : Caught a RuntimeException from the binder stub implementation.
+01-05 05:24:14.281 17623   681 W Binder  : java.lang.NullPointerException
+01-05 05:24:14.281 17623   681 W Binder  : 	at android.inputmethodservice.IInputMethodWrapper.setSessionEnabled(IInputMethodWrapper.java:280)
+01-05 05:24:14.281 17623   681 W Binder  : 	at com.android.internal.view.IInputMethod$Stub.onTransact(IInputMethod.java:129)
+01-05 05:24:14.281 17623   681 W Binder  : 	at android.os.Binder.execTransact(Binder.java:404)
+01-05 05:24:14.281 17623   681 W Binder  : 	at dalvik.system.NativeStart.run(Native Method)
+01-05 05:24:14.281 17491 17698 W InputMethodManagerService: Got RemoteException sending setActive(false) notification to pid 715 uid 10075
+01-05 05:24:14.329 17157 17187 W genymotion_audio: out_write() limiting sleep time 50792 to 39909
+
+
+结论：finish的话，则没有Force removing 当前activity的log输出。
+exit后，windowState直接终止当前activity（activity的onDestroy生命周期没有回调），界面回到桌面。
+
+
+那么如果在第三个activity中，执行exit呢？
+
+在activity3 来exit 进程。
+
+01-05 05:26:00.561  2129  2129 I Process : Sending signal. PID: 2129 SIG: 9
+01-05 05:26:00.565 17157 17187 E FastMixer: did not receive expected priority boost
+01-05 05:26:00.573 17157 17187 W genymotion_audio: out_write() limiting sleep time 116462 to 39909
+01-05 05:26:00.589 17491 17682 I ActivityManager: Process org.roger.sample.androidexam (pid 2129) has died.
+01-05 05:26:00.589 17491 17502 I WindowState: WIN DEATH: Window{5298dce4 u0 org.roger.sample.androidexam/org.roger.sample.androidexam.InterfaceActivity}
+01-05 05:26:00.589 17491 17523 W InputDispatcher: channel '5299741c org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.IntentActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-05 05:26:00.589 17491 17523 E InputDispatcher: channel '5299741c org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.IntentActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-05 05:26:00.589 17491 17523 W InputDispatcher: channel '52957954 org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.LocalActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-05 05:26:00.589 17491 17523 E InputDispatcher: channel '52957954 org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.LocalActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-05 05:26:00.589 17491 17523 W InputDispatcher: channel '5299c85c PopupWindow:528492e4 (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-05 05:26:00.589 17491 17523 E InputDispatcher: channel '5299c85c PopupWindow:528492e4 (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-05 05:26:00.589 17491 17682 W ActivityManager: Force removing ActivityRecord{5295f27c u0 org.roger.sample.androidexam/.Exam7_Service.IntentActivity t26}: app died, no saved state
+01-05 05:26:00.593 17491 17699 W InputDispatcher: Attempted to unregister already unregistered input channel '5299c85c PopupWindow:528492e4 (server)'
+01-05 05:26:00.593 17491 17637 W InputDispatcher: Attempted to unregister already unregistered input channel '52957954 org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.LocalActivity (server)'
+01-05 05:26:00.593 17491 17699 I WindowState: WIN DEATH: Window{5299c85c u0 PopupWindow:528492e4}
+01-05 05:26:00.593 17491 17637 I WindowState: WIN DEATH: Window{52957954 u0 org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.LocalActivity}
+01-05 05:26:00.597 17491 17503 W InputDispatcher: Attempted to unregister already unregistered input channel '5299741c org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.IntentActivity (server)'
+01-05 05:26:00.597 17491 17503 I WindowState: WIN DEATH: Window{5299741c u0 org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.IntentActivity}
+01-05 05:26:00.597 17491 17503 W WindowManager: Force-removing child win Window{5299c85c u0 PopupWindow:528492e4 EXITING} from container Window{5299741c u0 org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.IntentActivity}
+01-05 05:26:00.601 17154 17154 W SurfaceFlinger: couldn't log to binary event log: overflow.
+01-05 05:26:00.609  2398  2398 D dalvikvm: Late-enabling CheckJNI
+01-05 05:26:00.609 17491 17682 I ActivityManager: Start proc org.roger.sample.androidexam for activity org.roger.sample.androidexam/.Exam7_Service.LocalActivity: pid=2398 uid=10075 gids={50075, 1028, 1015, 3003}
+01-05 05:26:00.613 17157 17187 W genymotion_audio: out_write() limiting sleep time 89977 to 39909
+01-05 05:26:00.621  2398  2398 D MyApplication: onCreate.
+01-05 05:26:00.625  2398  2398 D lcast   : lcast server running on port 41128
+01-05 05:26:00.625  2398  2404 E jdwp    : Failed sending reply to debugger: Broken pipe
+01-05 05:26:00.625  2398  2404 D dalvikvm: Debugger has detached; object registry had 1 entries
+01-05 05:26:00.629  2398  2398 I EXAM7   : LocalActivity onCreate
+01-05 05:26:00.637  2398  2398 I dalvikvm: Could not find method android.content.res.TypedArray.getChangingConfigurations, referenced from method android.support.v7.internal.widget.TintTypedArray.getChangingConfigurations
+01-05 05:26:00.637  2398  2398 W dalvikvm: VFY: unable to resolve virtual method 457: Landroid/content/res/TypedArray;.getChangingConfigurations ()I
+01-05 05:26:00.637  2398  2398 D dalvikvm: VFY: replacing opcode 0x6e at 0x0002
+01-05 05:26:00.637  2398  2398 I dalvikvm: Could not find method android.content.res.TypedArray.getType, referenced from method android.support.v7.internal.widget.TintTypedArray.getType
+01-05 05:26:00.637  2398  2398 W dalvikvm: VFY: unable to resolve virtual method 479: Landroid/content/res/TypedArray;.getType (I)I
+01-05 05:26:00.637  2398  2398 D dalvikvm: VFY: replacing opcode 0x6e at 0x0002
+01-05 05:26:00.649 17491 17534 D MobileDataStateTracker: default: setPolicyDataEnable(enabled=true)
+01-05 05:26:00.653 17157 17187 W genymotion_audio: out_write() limiting sleep time 63492 to 39909
+01-05 05:26:00.661 17491 17534 D MobileDataStateTracker: default: setPolicyDataEnable(enabled=true)
+01-05 05:26:00.673  2398  2398 D libEGL  : loaded /system/lib/egl/libEGL_genymotion.so
+01-05 05:26:00.673  2398  2398 D         : HostConnection::get() New Host Connection established 0xb8a74008, tid 2398
+01-05 05:26:00.673 17491 17534 D MobileDataStateTracker: default: setPolicyDataEnable(enabled=true)
+01-05 05:26:00.681  2398  2398 D libEGL  : loaded /system/lib/egl/libGLESv1_CM_genymotion.so
+01-05 05:26:00.685  2398  2398 D libEGL  : loaded /system/lib/egl/libGLESv2_genymotion.so
+01-05 05:26:00.693 17157 17187 W genymotion_audio: out_write() limiting sleep time 48616 to 39909
+01-05 05:26:00.741  2398  2398 W EGL_genymotion: eglSurfaceAttrib not implemented
+01-05 05:26:00.741  2398  2398 E OpenGLRenderer: Getting MAX_TEXTURE_SIZE from GradienCache
+01-05 05:26:00.745  2398  2398 E OpenGLRenderer: MAX_TEXTURE_SIZE: 16384
+01-05 05:26:00.749  2398  2398 E OpenGLRenderer: Getting MAX_TEXTURE_SIZE from Caches::initConstraints()
+01-05 05:26:00.749  2398  2398 E OpenGLRenderer: MAX_TEXTURE_SIZE: 16384
+01-05 05:26:00.749  2398  2398 D OpenGLRenderer: Enabling debug mode 0
+01-05 05:26:00.765  2398  2401 D dalvikvm: GC_CONCURRENT freed 207K, 9% free 2905K/3168K, paused 0ms+2ms, total 5ms
+01-05 05:26:00.773 17491 17682 W InputMethodManagerService: Got RemoteException sending setActive(false) notification to pid 2129 uid 10075
+01-05 05:26:00.777 17623 17635 W Binder  : Caught a RuntimeException from the binder stub implementation.
+01-05 05:26:00.777 17623 17635 W Binder  : java.lang.NullPointerException
+01-05 05:26:00.777 17623 17635 W Binder  : 	at android.inputmethodservice.IInputMethodWrapper.setSessionEnabled(IInputMethodWrapper.java:280)
+01-05 05:26:00.777 17623 17635 W Binder  : 	at com.android.internal.view.IInputMethod$Stub.onTransact(IInputMethod.java:129)
+01-05 05:26:00.777 17623 17635 W Binder  : 	at android.os.Binder.execTransact(Binder.java:404)
+01-05 05:26:00.777 17623 17635 W Binder  : 	at dalvik.system.NativeStart.run(Native Method)
+01-05 05:26:00.973 17491 17505 I ActivityManager: Displayed org.roger.sample.androidexam/.Exam7_Service.LocalActivity: +374ms
+
+
+
+
+在activity3 finish 再exit 进程。
+
+
+
+01-05 05:35:32.729 10234 10234 I Process : Sending signal. PID: 10234 SIG: 9
+01-05 05:35:32.729 17157 17187 E FastMixer: did not receive expected priority boost
+01-05 05:35:32.741 17157 17187 W genymotion_audio: out_write() limiting sleep time 116462 to 39909
+01-05 05:35:32.745 17491 17502 I ActivityManager: Process org.roger.sample.androidexam (pid 10234) has died.
+01-05 05:35:32.745 17491 17523 W InputDispatcher: channel '52987ce4 PopupWindow:52847558 (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-05 05:35:32.745 17491 17523 E InputDispatcher: channel '52987ce4 PopupWindow:52847558 (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-05 05:35:32.745 17491 17523 W InputDispatcher: channel '529a998c org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.IntentActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-05 05:35:32.745 17491 17523 E InputDispatcher: channel '529a998c org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.IntentActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-05 05:35:32.745 17491 17523 W InputDispatcher: channel '5297392c org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.LocalActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-05 05:35:32.745 17491 17523 E InputDispatcher: channel '5297392c org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.LocalActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-05 05:35:32.745 17491 17637 I WindowState: WIN DEATH: Window{52a2d6ac u0 org.roger.sample.androidexam/org.roger.sample.androidexam.InterfaceActivity}
+01-05 05:35:32.749 17491 17699 W InputDispatcher: Attempted to unregister already unregistered input channel '52987ce4 PopupWindow:52847558 (server)'
+01-05 05:35:32.749 17491 17682 W InputDispatcher: Attempted to unregister already unregistered input channel '5297392c org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.LocalActivity (server)'
+01-05 05:35:32.749 17491 17698 W InputDispatcher: Attempted to unregister already unregistered input channel '529a998c org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.IntentActivity (server)'
+01-05 05:35:32.749 17491 17699 I WindowState: WIN DEATH: Window{52987ce4 u0 PopupWindow:52847558}
+01-05 05:35:32.749 17491 17682 I WindowState: WIN DEATH: Window{5297392c u0 org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.LocalActivity}
+01-05 05:35:32.749 17491 17698 I WindowState: WIN DEATH: Window{529a998c u0 org.roger.sample.androidexam/org.roger.sample.androidexam.Exam7_Service.IntentActivity}
+01-05 05:35:32.769 10667 10667 D dalvikvm: Late-enabling CheckJNI
+01-05 05:35:32.769 17491 17502 I ActivityManager: Start proc org.roger.sample.androidexam for activity org.roger.sample.androidexam/.Exam7_Service.LocalActivity: pid=10667 uid=10075 gids={50075, 1028, 1015, 3003}
+01-05 05:35:32.781 17157 17187 W genymotion_audio: out_write() limiting sleep time 78367 to 39909
+01-05 05:35:32.785 10667 10673 E jdwp    : Failed sending reply to debugger: Broken pipe
+01-05 05:35:32.785 10667 10673 D dalvikvm: Debugger has detached; object registry had 1 entries
+01-05 05:35:32.785 10667 10667 D MyApplication: onCreate.
+01-05 05:35:32.789 10667 10667 D lcast   : lcast server running on port 41128
+01-05 05:35:32.789 10667 10667 I EXAM7   : LocalActivity onCreate
+01-05 05:35:32.797 10667 10667 I dalvikvm: Could not find method android.content.res.TypedArray.getChangingConfigurations, referenced from method android.support.v7.internal.widget.TintTypedArray.getChangingConfigurations
+01-05 05:35:32.797 10667 10667 W dalvikvm: VFY: unable to resolve virtual method 457: Landroid/content/res/TypedArray;.getChangingConfigurations ()I
+01-05 05:35:32.797 10667 10667 D dalvikvm: VFY: replacing opcode 0x6e at 0x0002
+01-05 05:35:32.797 10667 10667 I dalvikvm: Could not find method android.content.res.TypedArray.getType, referenced from method android.support.v7.internal.widget.TintTypedArray.getType
+01-05 05:35:32.797 10667 10667 W dalvikvm: VFY: unable to resolve virtual method 479: Landroid/content/res/TypedArray;.getType (I)I
+01-05 05:35:32.797 10667 10667 D dalvikvm: VFY: replacing opcode 0x6e at 0x0002
+01-05 05:35:32.821 17491 17534 D MobileDataStateTracker: default: setPolicyDataEnable(enabled=true)
+01-05 05:35:32.821 17157 17187 W genymotion_audio: out_write() limiting sleep time 63492 to 39909
+01-05 05:35:32.833 17491 17534 D MobileDataStateTracker: default: setPolicyDataEnable(enabled=true)
+01-05 05:35:32.837 10667 10667 D libEGL  : loaded /system/lib/egl/libEGL_genymotion.so
+01-05 05:35:32.837 10667 10667 D         : HostConnection::get() New Host Connection established 0xb8a74108, tid 10667
+01-05 05:35:32.853 10667 10667 D libEGL  : loaded /system/lib/egl/libGLESv1_CM_genymotion.so
+01-05 05:35:32.853 10667 10667 D libEGL  : loaded /system/lib/egl/libGLESv2_genymotion.so
+01-05 05:35:32.861 17157 17187 W genymotion_audio: out_write() limiting sleep time 48616 to 39909
+01-05 05:35:32.873 17154 17154 W SurfaceFlinger: couldn't log to binary event log: overflow.
+01-05 05:35:32.873 10667 10667 W EGL_genymotion: eglSurfaceAttrib not implemented
+01-05 05:35:32.877 10667 10667 E OpenGLRenderer: Getting MAX_TEXTURE_SIZE from GradienCache
+01-05 05:35:32.877 10667 10667 E OpenGLRenderer: MAX_TEXTURE_SIZE: 16384
+01-05 05:35:32.881 10667 10667 E OpenGLRenderer: Getting MAX_TEXTURE_SIZE from Caches::initConstraints()
+01-05 05:35:32.881 10667 10667 E OpenGLRenderer: MAX_TEXTURE_SIZE: 16384
+01-05 05:35:32.881 10667 10667 D OpenGLRenderer: Enabling debug mode 0
+01-05 05:35:32.889 10667 10671 D dalvikvm: GC_CONCURRENT freed 212K, 9% free 2908K/3176K, paused 0ms+1ms, total 4ms
+01-05 05:35:32.889 17491 17503 W InputMethodManagerService: Got RemoteException sending setActive(false) notification to pid 10234 uid 10075
+01-05 05:35:32.893 17623 17636 W Binder  : Caught a RuntimeException from the binder stub implementation.
+01-05 05:35:32.893 17623 17636 W Binder  : java.lang.NullPointerException
+01-05 05:35:32.893 17623 17636 W Binder  : 	at android.inputmethodservice.IInputMethodWrapper.setSessionEnabled(IInputMethodWrapper.java:280)
+01-05 05:35:32.893 17623 17636 W Binder  : 	at com.android.internal.view.IInputMethod$Stub.onTransact(IInputMethod.java:129)
+01-05 05:35:32.893 17623 17636 W Binder  : 	at android.os.Binder.execTransact(Binder.java:404)
+01-05 05:35:32.893 17623 17636 W Binder  : 	at dalvik.system.NativeStart.run(Native Method)
+01-05 05:35:33.069 17491 17505 I ActivityManager: Displayed org.roger.sample.androidexam/.Exam7_Service.LocalActivity: +316ms
+
+
+
+
+结论：
+ActivityManager显示进程已经死了
+WindowState依次显示activity 所属的win挂了。
+
+然后ActivityManager会恢复之前的activity，也就是act2，app:onCreate初始化被调用，然后act2:onCreate被调用。而且返回会调act1:onCreate。说明task栈信息有保留，但是所有act被异常销毁。这种退出，不正常：首先退出触发后，实际是回到上一个act；其次之前的act被异常销毁。
