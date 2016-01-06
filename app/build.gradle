@@ -38,7 +38,7 @@ android {
     productFlavors {
         def var = "abcd"
         "a" {
-            buildConfigField "String", "TTID", "abc"
+            buildConfigField "String", "TTID", "\"abc\""
             println var
         }
     }
