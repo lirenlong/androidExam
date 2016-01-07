@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.roger.sample.androidexam">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -77,7 +73,8 @@
 
         <activity
             android:name=".Exam7_Service.CrashExitActivity"
-            android:label="CrashExitActivity" />
+            android:taskAffinity="org.roger.sample.abc"
+            android:label="CrashExitActivity"/>
 
         <!-- other activities -->
         <activity android:name="com.github.mmin18.layoutcast.ResetActivity" />
@@ -91,5 +88,9 @@
             android:process=":process" />
 
     </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

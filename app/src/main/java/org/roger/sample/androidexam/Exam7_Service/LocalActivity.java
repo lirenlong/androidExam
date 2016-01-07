@@ -152,10 +152,13 @@ public class LocalActivity extends ActionBarActivity {
                 System.exit(2);
                 break;
             case R.id.crashActivity:
+                Log.i(TAG, "Local Activity TaskID = " + this.getTaskId());
                 Intent iTmp = new Intent(this, CrashExitActivity.class);
                 startActivity(iTmp);
                 break;
             case R.id.alarmTest:
+                Log.i(TAG, "Local Activity TaskID = " + this.getTaskId());
+
                 Intent intent = new Intent(this, CrashExitActivity.class);
 
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP

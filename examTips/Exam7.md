@@ -26,6 +26,23 @@
 
 如果不希望service被恢复，则继承自IntentService，或者继承自Service在onStartCommand中return  START_NOT_STICKY。
 
+> crash后的task变化
+
+crash后，os会恢复上一个act，task保持不变。有篇[文章](http://chintanrathod.com/auto-restart-application-after-crash-forceclose-in-android/)讲如何在crash时，较为妥善的恢复应用。因为系统默认恢复前一个act，可能会因为内容失效，产生空指针，从而再次crash。
+
+文章中，通过crashHandler，在caught后，利用alarmManager跳转到一个有特殊IntentFlag的act上，特殊在新建task、clearTask，同时需要finish调所有的acts。这样就可以无痛的唤起一个新的干净的应用了。
+
+唯一不好的在于需要finish所有act，这个有点影响效率。有没有更好的办法？
+
+考虑只clearTask，不newTask，这样当前的act都会被清掉吧。试试:
+
+答案是这样不够好：
+
+1. 首先上一个act还是会被换起来，然后我才会启动我的含有clearTask的act把他们都清掉。
+2. 这样不但效率上不高，现象上也随着上一个act是否有问题不一样。用户会觉得比较奇怪
+
+所以还是要清掉所有的activity啊！！！！
+
 ## bind方式的生命周期
 
 bindService需要一个ServiceConnection。通过bind，可以将activity绑定到service上；通过ServiceConnection可以获取IBinder，进而对service操作。

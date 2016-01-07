@@ -25,6 +25,7 @@ public class InterfaceActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i("InterfaceActivity", "onCreate " + this.toString());
+        Log.i("InterfaceActivity", "InterfaceActivity TaskID = " + this.getTaskId());
         setContentView(R.layout.activity_interface);
 
         MyApplication.addActivity(this);

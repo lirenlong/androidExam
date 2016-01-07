@@ -3,6 +3,7 @@ package org.roger.sample.androidexam.Exam7_Service;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import org.roger.sample.androidexam.R;
@@ -13,6 +14,8 @@ public class CrashExitActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crash_exit);
+
+        Log.i(LocalActivity.TAG, "CrashExitActivity TaskID = " + this.getTaskId());
     }
 
     public void onBtnClick(@NonNull View obj) {
