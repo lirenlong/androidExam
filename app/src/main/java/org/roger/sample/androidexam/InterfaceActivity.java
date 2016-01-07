@@ -1,6 +1,7 @@
 package org.roger.sample.androidexam;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,6 +26,8 @@ public class InterfaceActivity extends Activity {
         super.onCreate(savedInstanceState);
         Log.i("InterfaceActivity", "onCreate " + this.toString());
         setContentView(R.layout.activity_interface);
+
+        MyApplication.addActivity(this);
     }
 
     public void onBtnClick(@NonNull View view) {
@@ -72,5 +75,7 @@ public class InterfaceActivity extends Activity {
     protected void onDestroy() {
         Log.i("InterfaceActivity", "onDestroy " + this.toString());
         super.onDestroy();
+
+        MyApplication.removeActivity(this);
     }
 }

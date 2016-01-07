@@ -1,5 +1,7 @@
 package org.roger.sample.androidexam.Exam7_Service;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import org.roger.sample.androidexam.MyApplication;
 import org.roger.sample.androidexam.R;
 
 import java.io.FileInputStream;
@@ -43,6 +46,8 @@ public class LocalActivity extends ActionBarActivity {
         initialServiceConnection();
 
         context = this;
+
+        MyApplication.addActivity(this);
     }
 
     private void initialServiceConnection() {
@@ -90,6 +95,8 @@ public class LocalActivity extends ActionBarActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "LocalActivity onDestory.");
+
+        MyApplication.removeActivity(this);
 
         // stop the local service
 //        stopService(new Intent(this, LocalService.class));
@@ -147,6 +154,18 @@ public class LocalActivity extends ActionBarActivity {
             case R.id.crashActivity:
                 Intent iTmp = new Intent(this, CrashExitActivity.class);
                 startActivity(iTmp);
+                break;
+            case R.id.alarmTest:
+                Intent intent = new Intent(this, CrashExitActivity.class);
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        | Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                PendingIntent pendingIntent = PendingIntent.getActivity(MyApplication.myApplication.getBaseContext(), 0, intent, intent.getFlags());
+                AlarmManager mgr = (AlarmManager) MyApplication.myApplication.getBaseContext().getSystemService(Context.ALARM_SERVICE);
+
+                mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 5000, pendingIntent);
                 break;
         }
     }

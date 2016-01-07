@@ -67,6 +67,22 @@ public class LocalService extends Service {
         rhelper = new BroadcastReceiverHelper(localService);
         LocalBroadcastManager.getInstance(localService).registerReceiver(rhelper, new IntentFilter("com.roger.broadcastreceiver"));
 
+//
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(5000);
+//                    throw new NoSuchFieldError();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
+
+//        super.onStartCommand(intent, flags, startId);
+//        return START_NOT_STICKY;
+
         return super.onStartCommand(intent, flags, startId);
     }
 
