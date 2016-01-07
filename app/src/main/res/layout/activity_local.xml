@@ -1,92 +1,113 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent">
 
-    <Button
-        android:id="@+id/startService"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onBtnClick"
-        android:text="startService" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/bind"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onBtnClick"
-        android:text="bind" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hello_world" />
 
-    <Button
-        android:id="@+id/unbind"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onBtnClick"
-        android:text="unbind" />
+            <Button
+                android:id="@+id/startService"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="startService" />
 
-    <Button
-        android:id="@+id/IntentSerializal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onBtnClick"
-        android:text="IntentSerializal" />
+            <Button
+                android:id="@+id/bind"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="bind" />
 
-    <Button
-        android:id="@+id/IntentParcelable"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onBtnClick"
-        android:text="IntentParcelable" />
+            <Button
+                android:id="@+id/unbind"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="unbind" />
 
-    <Button
-        android:id="@+id/IntentBigData"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onBtnClick"
-        android:text="IntentBigData" />
+            <Button
+                android:id="@+id/IntentSerializal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="IntentSerializal" />
 
-    <Button
-        android:id="@+id/SendBroadCast"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onBtnClick"
-        android:text="Send BroadCast to service then notifcation to intentActivity" />
+            <Button
+                android:id="@+id/IntentParcelable"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="IntentParcelable" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageview"/>
+            <Button
+                android:id="@+id/IntentBigData"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="IntentBigData" />
 
-    <Button
-        android:id="@+id/StartRemoteService"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onBtnClick"
-        android:text="StartRemoteService" />
-    <Button
-        android:id="@+id/crashIt"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onBtnClick"
-        android:text="造crash" />
+            <Button
+                android:id="@+id/SendBroadCast"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="Send BroadCast to service then notifcation to intentActivity" />
 
-    <Button
-        android:id="@+id/exitTest"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onBtnClick"
-        android:text="Exit" />
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/crashActivity"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onBtnClick"
-        android:text="进入可以crash的ACT" />
-</LinearLayout>
+            <Button
+                android:id="@+id/StartRemoteService"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="StartRemoteService" />
+
+            <Button
+                android:id="@+id/crashIt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="造crash" />
+
+            <Button
+                android:id="@+id/exitTest"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="Exit" />
+
+            <Button
+                android:id="@+id/crashActivity"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="进入可以crash的ACT" />
+
+            <Button
+                android:id="@+id/alarmTest"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="alarm 10s" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
