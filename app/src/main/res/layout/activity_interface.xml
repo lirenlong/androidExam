@@ -89,14 +89,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="onBtnClick"
-                android:text="测退出" />
+                android:text="杀进程退出" />
 
             <Button
                 android:id="@+id/crash"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="onBtnClick"
-                android:text="测crash" />
+                android:text="造crash" />
 
         </LinearLayout>
     </ScrollView>

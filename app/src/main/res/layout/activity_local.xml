@@ -93,21 +93,21 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:onClick="onBtnClick"
-                android:text="Exit" />
+                android:text="杀进程退出" />
 
             <Button
                 android:id="@+id/crashActivity"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:onClick="onBtnClick"
-                android:text="进入可以crash的ACT" />
+                android:text="跳转到一个可以造crash的ACT" />
 
             <Button
                 android:id="@+id/alarmTest"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:onClick="onBtnClick"
-                android:text="alarm 10s" />
+                android:text="Alarm pending到那个ACT" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
