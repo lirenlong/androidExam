@@ -64,6 +64,9 @@
         <activity
             android:name=".Exam7_Service.LocalActivity"
             android:label="@string/title_activity_local" />
+
+        <!--android:finishOnTaskLaunch="true"  则当用户切后台，再通过launch点击之后，localAct的onDestroy会被回调。必须是launch图标，前后台管理进入还不一样-->
+
         <activity
             android:name=".Exam7_Service.IntentActivity"
             android:label="@string/title_activity_intent" />
