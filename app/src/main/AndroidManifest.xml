@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.roger.sample.androidexam">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -65,7 +69,7 @@
             android:name=".Exam7_Service.LocalActivity"
             android:label="@string/title_activity_local" />
 
-        <!--android:finishOnTaskLaunch="true"  则当用户切后台，再通过launch点击之后，localAct的onDestroy会被回调。必须是launch图标，前后台管理进入还不一样-->
+        <!-- android:finishOnTaskLaunch="true"  则当用户切后台，再通过launch点击之后，localAct的onDestroy会被回调。必须是launch图标，前后台管理进入还不一样 -->
 
         <activity
             android:name=".Exam7_Service.IntentActivity"
@@ -73,11 +77,10 @@
         <activity
             android:name=".Exam9_layoutCast.LayoutCastTest"
             android:label="@string/title_activity_LayoutTest" />
-
         <activity
             android:name=".Exam7_Service.CrashExitActivity"
-            android:taskAffinity="org.roger.sample.abc"
-            android:label="CrashExitActivity"/>
+            android:label="CrashExitActivity"
+            android:taskAffinity="org.roger.sample.abc" />
 
         <!-- other activities -->
         <activity android:name="com.github.mmin18.layoutcast.ResetActivity" />
@@ -90,10 +93,7 @@
             android:name=".Exam7_Service.ProcessService"
             android:process=":process" />
 
+        <activity android:name=".Exam10_hotfix.hotFixActivity"></activity>
     </application>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

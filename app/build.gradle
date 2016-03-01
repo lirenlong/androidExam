@@ -35,6 +35,18 @@ android {
         }
     }
 
+//    sourceSets {
+//        main {
+//            manifest.srcFile 'AndroidManifest.xml'
+//            java.srcDirs = ['src']
+//            res.srcDirs = ['res']
+//            assets.srcDirs = ['assets']
+//            aidl.srcDirs = ['src']
+//            resources.srcDirs = ['src']
+//            jniLibs.srcDirs = ['libs']
+//        }
+//    }
+
     productFlavors {
         def var = "abcd"
         "a" {
@@ -49,8 +61,9 @@ dependencies {
     compile 'com.github.mmin18.layoutcast:library:1.+@aar'
     testCompile files('libs/junit-4.12.jar')
     compile 'com.android.support:appcompat-v7:22.2.0'
-    compile 'com.facebook.fresco:fresco:0.4.0'
+//    compile 'com.facebook.fresco:fresco:0.4.0'
     compile 'com.github.johnkil.android-progressfragment:progressfragment:1.4.+'
     compile 'com.android.support:support-v4:22.2.0'
     compile 'com.android.support:support-annotations:22.2.1'
+    compile 'com.alipay.euler:andfix:0.3.1@aar'
 }

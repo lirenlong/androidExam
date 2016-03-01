@@ -3,13 +3,18 @@ package org.roger.sample.androidexam.Exam0_wasteland;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Process;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import junit.framework.Test;
 import junit.runner.BaseTestRunner;
 import junit.runner.Version;
 
+import org.roger.sample.androidexam.Exam10_hotfix.A;
+import org.roger.sample.androidexam.Exam10_hotfix.hookedClass;
+import org.roger.sample.androidexam.Exam10_hotfix.hotFixActivity;
 import org.roger.sample.androidexam.R;
 
 import java.text.SimpleDateFormat;
@@ -21,6 +26,7 @@ import dalvik.system.DexClassLoader;
  * Created by liren on 15/8/26.
  */
 public class goToGetIt extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,6 +165,12 @@ public class goToGetIt extends Activity {
     }
 
     public void onBtnClick(View view) {
-        testClassNotFound();
+//        testClassNotFound();
+
+//        String str = hookedClass.stringAppendChar("roger", '1');
+        String str = A.a("roger");
+
+        TextView tv = (TextView) findViewById(R.id.textState);
+        tv.setText(str);
     }
 }

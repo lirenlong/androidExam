@@ -10,6 +10,7 @@ import android.view.View;
 
 import org.roger.sample.androidexam.Exam0_wasteland.goToGetIt;
 import org.roger.sample.androidexam.Exam1.Activity1;
+import org.roger.sample.androidexam.Exam10_hotfix.hotFixActivity;
 import org.roger.sample.androidexam.Exam2.Activity2;
 import org.roger.sample.androidexam.Exam3.Activity3;
 import org.roger.sample.androidexam.Exam4_surfaceview.ViewTest;
@@ -17,6 +18,9 @@ import org.roger.sample.androidexam.Exam5_Adapter.AdapterLearnActivity;
 import org.roger.sample.androidexam.Exam6_DataBinding.DBInterfaceActivity;
 import org.roger.sample.androidexam.Exam7_Service.LocalActivity;
 import org.roger.sample.androidexam.Exam9_layoutCast.LayoutCastTest;
+
+import java.io.File;
+import java.io.IOException;
 
 
 public class InterfaceActivity extends Activity {
@@ -68,6 +72,9 @@ public class InterfaceActivity extends Activity {
                 break;
             case R.id.crash:
                 throw new NoSuchFieldError();
+            case R.id.hotfix:
+                i.setClass(this, hotFixActivity.class);
+                break;
         }
         startActivity(i);
     }

@@ -14,6 +14,7 @@ import com.github.mmin18.layoutcast.LayoutCast;
 
 import org.roger.sample.androidexam.Exam7_Service.CrashExitActivity;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.List;
 public class MyApplication extends Application {
     public static MyApplication myApplication;
     public static ArrayList<Activity> listActs = null;
+    public File file = null;
 
     @Override
     public void onCreate() {
@@ -90,6 +92,19 @@ public class MyApplication extends Application {
 
             }
         });
+
+
+        Log.i("tmp" ,"file is " + this.getCacheDir());
+        file = new File(this.getCacheDir(),"1.txt");
+        if(!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
     }
 
     public static void addActivity(Activity a) {

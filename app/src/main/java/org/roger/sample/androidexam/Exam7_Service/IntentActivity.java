@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.facebook.imagepipeline.cache.BufferedDiskCache;
 
 import org.roger.sample.androidexam.R;
 

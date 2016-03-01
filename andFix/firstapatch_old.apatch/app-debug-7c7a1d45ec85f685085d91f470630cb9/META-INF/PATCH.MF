@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Patch-Name: app-debug
+Created-Time: 5 Nov 2015 05:19:38 GMT
+From-File: app-debug.apk
+To-File: app-debug2.apk
+Patch-Classes: org.roger.sample.androidexam.Exam0_wasteland.goToGetIt_
+ CF
+Created-By: 1.0 (ApkPatch)
+

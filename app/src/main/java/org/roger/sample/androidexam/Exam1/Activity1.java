@@ -12,8 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.view.SimpleDraweeView;
+//import com.facebook.drawee.backends.pipeline.Fresco;
+//import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.roger.sample.androidexam.R;
 
@@ -24,19 +24,19 @@ public class Activity1 extends ActionBarActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //init fresco
-        Fresco.initialize(this);
-
-        setContentView(R.layout.e1_activity_activity1);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
-
-        SimpleDraweeView draweeView = (SimpleDraweeView) findViewById(R.id.my_image_view);
-        Uri uri = Uri.parse("http://bcs.91rb.com/rbpiczy/Wallpaper/2011/4/1/367a6378e4d64586aace7a0da8f22309-3.jpg");
-        draweeView.setImageURI(uri);
+//        //init fresco
+//        Fresco.initialize(this);
+//
+//        setContentView(R.layout.e1_activity_activity1);
+//        if (savedInstanceState == null) {
+//            getSupportFragmentManager().beginTransaction()
+//                    .add(R.id.container, new PlaceholderFragment())
+//                    .commit();
+//        }
+//
+//        SimpleDraweeView draweeView = (SimpleDraweeView) findViewById(R.id.my_image_view);
+//        Uri uri = Uri.parse("http://bcs.91rb.com/rbpiczy/Wallpaper/2011/4/1/367a6378e4d64586aace7a0da8f22309-3.jpg");
+//        draweeView.setImageURI(uri);
     }
 
 

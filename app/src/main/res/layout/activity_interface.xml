@@ -8,6 +8,21 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="org.roger.sample.androidexam.InterfaceActivity">
 
+    <Button
+        android:id="@+id/exam0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="exam0"/>
+
+    <Button
+        android:id="@+id/exam1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="exam1"
+        android:layout_toRightOf="@id/exam0"/>
+
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -21,19 +36,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/exam0"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onBtnClick"
-                android:text="exam0" />
-
-            <Button
-                android:id="@+id/exam1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onBtnClick"
-                android:text="exam1" />
 
             <Button
                 android:id="@+id/exam2"
@@ -97,6 +99,13 @@
                 android:layout_height="wrap_content"
                 android:onClick="onBtnClick"
                 android:text="造crash" />
+
+            <Button
+                android:id="@+id/hotfix"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBtnClick"
+                android:text="hotfix" />
 
         </LinearLayout>
     </ScrollView>

@@ -7,11 +7,11 @@
     tools:context=".Activity1"
     tools:ignore="MergeRootFrame">
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/my_image_view"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        fresco:placeholderImage="@drawable/kgr"
-        />
+    <!--<com.facebook.drawee.view.SimpleDraweeView-->
+        <!--android:id="@+id/my_image_view"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--fresco:placeholderImage="@drawable/kgr"-->
+        <!--/>-->
 
     </LinearLayout>
