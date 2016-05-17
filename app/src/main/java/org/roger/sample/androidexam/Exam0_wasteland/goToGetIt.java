@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Process;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import junit.framework.Test;
@@ -15,12 +16,15 @@ import junit.runner.Version;
 import org.roger.sample.androidexam.Exam10_hotfix.A;
 import org.roger.sample.androidexam.Exam10_hotfix.hookedClass;
 import org.roger.sample.androidexam.Exam10_hotfix.hotFixActivity;
+import org.roger.sample.androidexam.Exam12_windowmanager.WindowUtils;
 import org.roger.sample.androidexam.R;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import dalvik.system.DexClassLoader;
+import dalvik.system.DexFile;
 
 /**
  * Created by liren on 15/8/26.
@@ -46,41 +50,41 @@ public class goToGetIt extends Activity {
     }
 
     private void testClassNotFound() {
-//        try {
-//            Class a = Class.forName("com.roger.abc");
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            Class a = Class.forName("com.roger.abc");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         // 有父类
-//        BaseTestRunner bt = new BaseTestRunner() {
-//            @Override
-//            public void testStarted(String s) {
-//
-//            }
-//
-//            @Override
-//            public void testEnded(String s) {
-//
-//            }
-//
-//            @Override
-//            public void testFailed(int i, Test test, Throwable throwable) {
-//
-//            }
-//
-//            @Override
-//            protected void runFailed(String s) {
-//
-//            }
-//        };
+        BaseTestRunner bt = new BaseTestRunner() {
+            @Override
+            public void testStarted(String s) {
 
-//        try {
-//            Version.id();
-//        } catch (Throwable e) {
-//            Log.i("roger","catched");
-//            e.printStackTrace();
-//        }
+            }
+
+            @Override
+            public void testEnded(String s) {
+
+            }
+
+            @Override
+            public void testFailed(int i, Test test, Throwable throwable) {
+
+            }
+
+            @Override
+            protected void runFailed(String s) {
+
+            }
+        };
+
+        try {
+            Version.id();
+        } catch (Throwable e) {
+            Log.i("roger","catched");
+            e.printStackTrace();
+        }
 
     }
 
@@ -164,13 +168,42 @@ public class goToGetIt extends Activity {
         Log.i("roger", uri.getEncodedSchemeSpecificPart());
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
     public void onBtnClick(View view) {
-//        testClassNotFound();
 
-//        String str = hookedClass.stringAppendChar("roger", '1');
-        String str = A.a("roger");
 
-        TextView tv = (TextView) findViewById(R.id.textState);
-        tv.setText(str);
+        // 2
+////        String str = hookedClass.stringAppendChar("roger", '1');
+//        String str = A.a("roger");
+//
+//        TextView tv = (TextView) findViewById(R.id.textState);
+//        tv.setText(str);
+
+
+        switch (view.getId()) {
+            case R.id.btn1:
+                // 1
+                testClassNotFound();
+                break;
+            case R.id.btn2:
+                // 3
+                try {
+                    DexFile dexFile = DexFile.loadDex("/sdcard/apatch.jar", getFilesDir().getAbsolutePath() + "/apatch_opt/", 0);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case R.id.btn3:
+                //        getWindowManager().addView(new View(this),new WindowManager.LayoutParams(10,10));
+                WindowUtils.showPopupWindow(goToGetIt.this);
+                break;
+        }
+
     }
 }

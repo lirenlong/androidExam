@@ -10,8 +10,23 @@
         android:text="waiting..."
         android:textAlignment="gravity" />
     <Button
+        android:id="@+id/btn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onBtnClick"
-        android:text="Click"/>
+        android:text="Click1"/>
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="loaddex"/>
+
+    <Button
+        android:id="@+id/btn3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnClick"
+        android:text="popwindow"/>
 </LinearLayout>
