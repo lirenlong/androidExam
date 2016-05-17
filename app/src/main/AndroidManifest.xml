@@ -93,7 +93,10 @@
             android:name=".Exam7_Service.ProcessService"
             android:process=":process" />
 
-        <activity android:name=".Exam10_hotfix.hotFixActivity"></activity>
+        <activity android:name=".Exam10_hotfix.hotFixActivity" />
+        <activity
+            android:name=".Exam11_rxjava_mvp.RxJavaInterfaceActivity"
+            android:label="@string/title_activity_rx_java_interface"></activity>
     </application>
 
 </manifest>

@@ -7,10 +7,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 
 import org.roger.sample.androidexam.Exam0_wasteland.goToGetIt;
 import org.roger.sample.androidexam.Exam1.Activity1;
 import org.roger.sample.androidexam.Exam10_hotfix.hotFixActivity;
+import org.roger.sample.androidexam.Exam11_rxjava_mvp.ActivitywithoutMVP;
+import org.roger.sample.androidexam.Exam12_windowmanager.WindowUtils;
 import org.roger.sample.androidexam.Exam2.Activity2;
 import org.roger.sample.androidexam.Exam3.Activity3;
 import org.roger.sample.androidexam.Exam4_surfaceview.ViewTest;
@@ -74,6 +78,9 @@ public class InterfaceActivity extends Activity {
                 throw new NoSuchFieldError();
             case R.id.hotfix:
                 i.setClass(this, hotFixActivity.class);
+                break;
+            case R.id.mvp:
+                i.setClass(this, ActivitywithoutMVP.class);
                 break;
         }
         startActivity(i);

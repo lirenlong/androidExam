@@ -6,7 +6,7 @@ android {
         MyDefault {
             keyAlias 'androidAlias'
             keyPassword '654321'
-            storeFile file('/Users/liren/Documents/sign/androidRoger.jks')
+            storeFile file('/Users/liren/Documents/cert/androidRoger.jks')
             storePassword '123456'
         }
     }
@@ -23,7 +23,7 @@ android {
         release {
             keyAlias 'androidAlias'
             keyPassword '654321'
-            storeFile file('/Users/liren/Documents/sign/androidRoger.jks')
+            storeFile file('/Users/liren/Documents/cert/androidRoger.jks')
             storePassword '123456'
         }
     }
@@ -66,4 +66,7 @@ dependencies {
     compile 'com.android.support:support-v4:22.2.0'
     compile 'com.android.support:support-annotations:22.2.1'
     compile 'com.alipay.euler:andfix:0.3.1@aar'
+    compile 'io.reactivex:rxjava:1.0.10'
+    compile 'io.reactivex:rxandroid:0.24.0'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
 }
