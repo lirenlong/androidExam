@@ -35,6 +35,13 @@ public class hotFixActivity extends Activity {
         return sb.toString();
     }
 
+    public void test() {
+        // 观察使用内部变量时，在_CF类里如何查看。
+        Log.i("ANDFIX", "HOOKED.");
+        Log.i("ANDFIX", sName);
+        Log.i("ANDFIX", "Class is " + patchManager.getClass());
+    }
+
     public void onBtnClick(View view) {
         long begin = System.currentTimeMillis();
         switch (view.getId()) {
