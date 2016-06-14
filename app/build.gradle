@@ -1,17 +1,12 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.android.databinding'
+//apply plugin: 'com.android.databinding'
 
 android {
-    signingConfigs {
-        MyDefault {
-            keyAlias 'androidAlias'
-            keyPassword '654321'
-            storeFile file('/Users/liren/Documents/cert/androidRoger.jks')
-            storePassword '123456'
-        }
-    }
+
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
+
+
     defaultConfig {
         applicationId "org.roger.sample.androidexam"
         minSdkVersion 16
@@ -19,6 +14,8 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+
     signingConfigs {
         release {
             keyAlias 'androidAlias'
@@ -26,15 +23,54 @@ android {
             storeFile file('/Users/liren/Documents/cert/androidRoger.jks')
             storePassword '123456'
         }
-    }
-    buildTypes {
-        release {
-            signingConfig signingConfigs.release
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        MyDefault {
+            keyAlias 'androidAlias'
+            keyPassword '654321'
+            storeFile file('/Users/liren/Documents/cert/androidRoger.jks')
+            storePassword '123456'
         }
     }
 
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            ndk {
+                abiFilters "armeabi", "x86"
+            }
+        }
+
+        // gradle assembleDebug（short：gradle aD）意味着选择debug这个buildtype
+        debug {
+            signingConfig signingConfigs.MyDefault
+            minifyEnabled false
+
+            ndk {
+                abiFilters "armeabi", "x86"
+            }
+            debuggable true
+            jniDebuggable true
+        }
+        anotherDebug {
+            initWith(buildTypes.debug)
+        }
+    }
+
+
+    productFlavors {
+        def var = "abcd"
+        a {
+            buildConfigField "String", "TTID", "\"abc\""
+            println var
+        }
+    }
+
+
+    sourceSets.anotherDebug.setRoot('foo/jnidebug')
 //    sourceSets {
 //        main {
 //            manifest.srcFile 'AndroidManifest.xml'
@@ -46,22 +82,90 @@ android {
 //            jniLibs.srcDirs = ['libs']
 //        }
 //    }
+}
 
-    productFlavors {
-        def var = "abcd"
-        "a" {
-            buildConfigField "String", "TTID", "\"abc\""
-            println var
+gradle.beforeProject { project ->
+    println "=======beforeProject======="
+}
+
+gradle.taskGraph.whenReady { graph ->
+    println "=======taskGraph Ready======="
+}
+
+gradle.buildFinished { result ->
+    println "=======buildFinished======="
+}
+
+gradle.projectsEvaluated {
+    tasks.each {
+        println "--current task is " + it.name
+
+    }
+}
+
+gradle.taskGraph.addTaskExecutionListener(new TaskExecutionListener() {
+    @Override
+    void beforeExecute(Task task) {
+        println "=======beforeExecute " + task.name
+
+        if(task.name.equals("prepareDebugUnitTestDependencies")) {
+            println "11111 dependsOn abc"
+            task.dependsOn(abc)
         }
     }
 
+    @Override
+    void afterExecute(Task task, TaskState taskState) {
+        println "=======afterExecute " + task.name
+    }
+})
+
+// 插入任务
+task A << {println 'Hello from A'}
+//task B << {println 'Hello from B'}
+task B {
+    doLast {
+        println 'Hello from B'
+
+    }
+}
+
+B.dependsOn A
+
+task abc (type :org.gradle.api.tasks.Copy) {
+    println "******abc"
+
+    dependsOn B
+    doLast {
+        println "******abc last"
+    }
+}
+
+// 删除任务
+// *********删除任务 way1
+abc.doFirst{
+    println "******abc first"
+    if(true) {throw new StopExecutionException()}
+}
+
+// *********删除任务 way2
+abc {}.onlyIf {
+    !project.hasProperties('skipABC')
+}
+
+// *********删除任务 way3
+abc {}.enabled = false
+
+// 替换任务
+task A (overwrite : true) {
+    println "a new A"
 }
 
 dependencies {
     compile 'com.github.mmin18.layoutcast:library:1.+@aar'
     testCompile files('libs/junit-4.12.jar')
     compile 'com.android.support:appcompat-v7:22.2.0'
-//    compile 'com.facebook.fresco:fresco:0.4.0'
+    //    compile 'com.facebook.fresco:fresco:0.4.0'
     compile 'com.github.johnkil.android-progressfragment:progressfragment:1.4.+'
     compile 'com.android.support:support-v4:22.2.0'
     compile 'com.android.support:support-annotations:22.2.1'
